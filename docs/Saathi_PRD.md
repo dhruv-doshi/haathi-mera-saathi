@@ -2,9 +2,9 @@
 ### A multilingual, voice-first late-night senior for students (Class 6–12, Boards / JEE / NEET)
 
 > **Working name:** *Saathi* ("companion"). Placeholder — rename freely.
-> **Document type:** Product Requirements Document, structured as three standalone, independently shippable versions.
-> **Build context:** MVP, 4-hour window. V1 is the product; V2 and V3 are channel expansions of the same brain.
-> **Credits stance:** Use paid credits (Vobiz, Maximem) **only when they earn their place.** V1 runs end-to-end with no paid credits.
+> **Document type:** Product Requirements Document for a standalone, independently shippable product.
+> **Build context:** MVP, 4-hour window. V1 (browser voice mentor) is the product; V1.5 adds academic-term recognition on top.
+> **Credits stance:** Use paid credits (Maximem) **only when they earn their place.** V1 runs end-to-end with no paid credits.
 
 ---
 
@@ -37,7 +37,7 @@ The reframe that defines this PRD: **Saathi handles all doubts — academic *and
 
 ---
 
-## 3. Product Principles (apply to all versions)
+## 3. Product Principles
 
 These are non-negotiable behaviours. A version that violates these is not Saathi, regardless of features.
 
@@ -53,19 +53,19 @@ These are non-negotiable behaviours. A version that violates these is not Saathi
 
 ---
 
-## 4. The Three Versions at a Glance
+## 4. The Product at a Glance
 
-Each version is a **complete, standalone product** that demonstrates the core value on its own. They share one brain; they differ in *channel* and *reach*.
+V1 is a **complete, standalone product** that demonstrates the core value on its own. V1.5 is a quality fix layered on top of the same brain — academic-term recognition so code-mixed math/science is heard correctly.
 
-| | V1 — The Mentor That Knows You | V2 — Reach Me Anywhere | V3 — Show Me |
-|---|---|---|---|
-| **One-liner** | A browser voice mentor that knows you, directs you, and picks you up | Same mentor, dial-able on a real phone number | Same mentor, in a video room with a shared whiteboard |
-| **Channel** | Web (mic + speaker) | Phone call (PSTN/SIP) | Video room + visual canvas |
-| **Core value proven** | Memory + mentorship + banter/energy + multilingual voice + smooth intent switching | Zero-friction access at 10 PM, no app needed | Visual reasoning for math/science |
-| **Standalone demo** | Student talks; Saathi opens with their context, switches between teaching/planning/personal, and runs a breathing or dance reset | Dial a number live on stage, talk to Saathi | Solve a geometry/organic problem with the mentor drawing it out |
-| **Paid credits needed** | **None** (in-context profile + browser audio) | Vobiz (telephony) | None required; LiveKit room |
-| **Build priority** | **Must build** (~2–2.5 hrs) | Build if V1 solid (~+1 hr) | Build if time remains (~+1 hr) |
-| **Primary risk** | Conversation quality / intent switching / banter timing | SIP/telephony integration time | Real-time canvas sync + agent drawing |
+| | V1 — The Mentor That Knows You | V1.5 — Hears You Right |
+|---|---|---|
+| **One-liner** | A browser voice mentor that knows you, directs you, and picks you up | The same mentor, now reliable on code-mixed math/science terms |
+| **Channel** | Web (mic + speaker) | Web (same channel) |
+| **Core value proven** | Memory + mentorship + banter/energy + multilingual voice + smooth intent switching | Accurate comprehension of "sin x," "cos theta," and mixed Hindi/English terms |
+| **Standalone demo** | Student talks; Saathi opens with their context, switches between teaching/planning/personal, and runs a breathing or dance reset | A Hinglish question with embedded math terms is transcribed and answered correctly |
+| **Paid credits needed** | **None** (in-context profile + browser audio) | **None** |
+| **Build priority** | **Must build** (~2–2.5 hrs) | Build on top of V1 (~+0.5 hr) |
+| **Primary risk** | Conversation quality / intent switching / banter timing | Normalizer over- or under-correcting transcripts |
 
 ---
 
@@ -73,14 +73,12 @@ Each version is a **complete, standalone product** that demonstrates the core va
 
 ### 5.1 System Architecture
 
-All three versions plug into one shared **Mentor Brain**. The only thing that changes per version is the input/output channel feeding the brain.
+Everything plugs into one shared **Mentor Brain**, fed by the browser voice channel.
 
 ```mermaid
 flowchart TB
-    subgraph Channels["Channels (vary by version)"]
+    subgraph Channels["Channel"]
         W["V1: Web mic/speaker"]
-        P["V2: Phone call via Vobiz SIP"]
-        V["V3: Video room + Whiteboard"]
     end
 
     subgraph Orchestrator["Voice Orchestrator (LiveKit Agents / Pipecat)"]
@@ -101,8 +99,6 @@ flowchart TB
     SYNAP["Maximem Synap<br/>(optional: persistent<br/>cross-session memory)"]
 
     W --> VAD
-    P --> VAD
-    V --> VAD
     VAD --> STT --> NORM --> ROUTER
     ROUTER <--> STATE
     ROUTER --> LLM
@@ -110,11 +106,9 @@ flowchart TB
     SYNAP -. backs .-> MEM
     LLM --> GUARD --> TTS
     TTS --> W
-    TTS --> P
-    TTS --> V
 ```
 
-**How to read it:** audio enters through whichever channel the version uses, passes through interruption-aware voice handling, gets transcribed and *normalized* (the step that rescues "sin x" from being heard as "signs"), and reaches the brain. The brain decides what *kind* of moment this is (mode router — including whether it's time to teach, direct, or get the student to breathe/move), keeps a small running memory of where the conversation is and what mood the student is in (state object), grounds everything in the student's profile and history, generates a mentor response with personality, and passes it through safety checks before speaking. Persistent cross-session memory is provided by **Maximem Synap** when enabled — otherwise the profile is pre-seeded in context.
+**How to read it:** audio enters through the browser channel, passes through interruption-aware voice handling, gets transcribed and *normalized* (the step that rescues "sin x" from being heard as "signs"), and reaches the brain. The brain decides what *kind* of moment this is (mode router — including whether it's time to teach, direct, or get the student to breathe/move), keeps a small running memory of where the conversation is and what mood the student is in (state object), grounds everything in the student's profile and history, generates a mentor response with personality, and passes it through safety checks before speaking. Persistent cross-session memory is provided by **Maximem Synap** when enabled — otherwise the profile is pre-seeded in context.
 
 ### 5.2 Conversation Mode Flow (the "mentor not bot" logic)
 
@@ -154,9 +148,9 @@ Every transition between modes triggers a short spoken acknowledgement ("Theek h
 
 ---
 
-## 6. Shared Platform Capabilities (the brain — used by all versions)
+## 6. Platform Capabilities (the brain)
 
-These are built once in V1 and reused unchanged by V2 and V3.
+These are built once in the Foundation and reused unchanged by the browser client.
 
 **6.1 Student Memory.** A structured profile injected into every session: name, class, board/exam track, weak and strong topics, last test scores, syllabus progress, upcoming exam dates — and, across sessions, a memory of prior conversations ("last time Organic was bugging you — how's it going?"). The opening turn must reference it so the student immediately feels known.
 - *MVP default (no credits):* the profile is pre-seeded and injected in context for a single session. Enough to prove "it knows me" in a demo.
@@ -178,7 +172,7 @@ These are built once in V1 and reused unchanged by V2 and V3.
 
 **6.7 Academic-Term Normalization.** A lightweight LLM pass between transcription and reasoning that re-interprets the raw transcript in math/science context — recovering "sin x" from "signs," disambiguating "cos theta," reconciling English terms mixed with Hindi ("lambit karan" = perpendicular). Deliberately corrects downstream rather than retraining STT. *(Implemented in V1.5 — see `V1_5_academic_terms.md`: STT keyterm prevention + a dedicated conditional normalizer stage on `stt_node`.)*
 
-**6.8 Safety & Escalation.** Distress detection, age-appropriate boundaries, gentle/optional physical activity, and a defined escalation response. Detailed in Section 11.
+**6.8 Safety & Escalation.** Distress detection, age-appropriate boundaries, gentle/optional physical activity, and a defined escalation response. Detailed in Section 9.
 
 ---
 
@@ -210,7 +204,7 @@ A Class 11 JEE aspirant opens Saathi in the browser at 10 PM and says, *"Yaar Or
 - Direction-first behaviour: prioritization, "what to drop," concrete next step.
 
 **Supporting:**
-- Basic safety guardrails and escalation path (Section 11).
+- Basic safety guardrails and escalation path (Section 9).
 - Transcript view of the conversation for the demo (optional, aids judging).
 
 ### 7.4 Acceptance Criteria
@@ -228,68 +222,9 @@ Phone access, video, whiteboard, account systems, dashboards. Persistent cross-s
 
 ---
 
-## 8. Version 2 — "Reach Me Anywhere"
+## 8. Conversation Design & Mentor Behaviour Spec
 
-**Status: build if V1 is solid and demoable. ~+1 hr. Uses Vobiz credits.**
-
-### 8.1 Goal
-Remove all friction from access. The real pain is the student at 10 PM with no app open — Saathi should be a phone number you just call.
-
-### 8.2 User Story
-A student dials Saathi's number from any phone — no app, no login — and has the exact same mentorship conversation as V1, banter and breathing resets included, over a normal call.
-
-### 8.3 Feature List
-- Real, dial-able phone number via **Vobiz** (Indian DID, low-latency SIP) bridged into the same orchestrator and brain used in V1.
-- Inbound call handling: ring → connect → Saathi greets with the student's context.
-- Full parity of V1 mentor behaviour over the phone channel (all modes, banter, energize toolkit, state, interruption, normalization, multilingual).
-- Graceful call lifecycle: clean answer, natural turn-taking, clean hang-up.
-
-### 8.4 Acceptance Criteria
-- A live phone call connects to Saathi within a few rings.
-- Conversation quality, banter, and energize behaviour match V1.
-- Interruption works over the phone channel.
-- Call ends cleanly without dangling sessions.
-
-### 8.5 Risk & Credit Note
-Telephony/SIP is the classic time-sink — V2 must never block V1. Vobiz is the *only* credit genuinely needed here, because the phone channel can't exist without telephony. If SIP fights back, fall back to a rock-solid V1 demo and present V2 as the next channel.
-
-### 8.6 Out of Scope for V2
-Outbound calling, IVR menus, multi-number routing, call recording/analytics.
-
----
-
-## 9. Version 3 — "Show Me"
-
-**Status: build only if V1 (and ideally V2) are locked. ~+1 hr. No paid credits required.**
-
-### 9.1 Goal
-Give Saathi a visual surface for the subjects where voice alone isn't enough — geometry, organic mechanisms, diagrams, step-by-step working — addressing the "typing math is painful, and some things must be seen" gap.
-
-### 9.2 User Story
-A student joins a video room with Saathi to work through a geometry problem. As Saathi explains, it posts the figure and the working steps onto a shared whiteboard, so the student can both hear and see the reasoning.
-
-### 9.3 Feature List
-- Video room (LiveKit room model) the student can join, mirroring a Google Meet experience.
-- Shared whiteboard / canvas the mentor can write to as it explains (rendered steps, formulae, simple diagrams).
-- Full parity of V1 mentor behaviour inside the room (all modes, banter, energize, state, interruption, multilingual, normalization).
-- Tight coupling of spoken explanation and what appears on the board (the visual tracks the talk).
-
-### 9.4 Acceptance Criteria
-- Student joins the room and talks to Saathi with V1-level conversation quality.
-- For a visual problem, the whiteboard shows working that matches the spoken explanation.
-- The board updates live during the explanation, not only at the end.
-
-### 9.5 Risk Note
-Highest build cost (real-time canvas + agent-driven drawing). Lowest priority. A partial version — the mentor posting rendered steps rather than freehand drawing — is an acceptable scoped-down demo.
-
-### 9.6 Out of Scope for V3
-Student-drawn input interpretation, multi-participant rooms, screen sharing, recording.
-
----
-
-## 10. Conversation Design & Mentor Behaviour Spec
-
-This is the heart of the product and applies to all versions.
+This is the heart of the product.
 
 **Persona.** A warm, slightly cheeky senior — the topper roommate who is generous with time, honest, funny, and never condescending. Speaks the way a real senior speaks: in the student's language and register, with natural code-mixing, easy humour, and real belief in the student.
 
@@ -315,7 +250,7 @@ This is the heart of the product and applies to all versions.
 
 ---
 
-## 11. Safety, Boundaries & Privacy
+## 9. Safety, Boundaries & Privacy
 
 Because Saathi handles personal topics and suggests physical activity for minors, safety is a first-class requirement.
 
@@ -328,24 +263,23 @@ Because Saathi handles personal topics and suggests physical activity for minors
 
 ---
 
-## 12. Tooling & Stack Mapping (high level)
+## 10. Tooling & Stack Mapping (high level)
 
-**Credit discipline:** only Vobiz (for V2's phone channel) and, optionally, Maximem Synap (for cross-session memory) consume paid credits. V1 and V3 need neither.
+**Credit discipline:** only Maximem Synap (for cross-session memory) optionally consumes paid credits. V1 runs end-to-end with none.
 
 | Layer | Choice | Role | Credits |
 |---|---|---|---|
-| Voice orchestration | LiveKit Agents (or Pipecat) | STT→LLM→TTS pipeline, turn-taking, **interruption/barge-in**, rooms for V3 | None |
-| Telephony (V2 only) | **Vobiz** | Indian phone number (DID) + low-latency SIP; bridges a real call into the orchestrator | Yes (only if doing V2) |
+| Voice orchestration | LiveKit Agents (or Pipecat) | STT→LLM→TTS pipeline, turn-taking, **interruption/barge-in** | None |
 | Persistent memory (optional) | **Maximem Synap** | Per-user, cross-session memory — the "remembers our last call" magic; purpose-built for agent memory with a Voice AI use case | Yes (only if demoing persistence) |
 | STT | Indian-language-tuned model | Transcription incl. code-mixed speech | — |
 | TTS | Multilingual voice | Natural, expressive spoken replies | — |
 | Reasoning | Mentor LLM + system prompt | Mode routing, mentorship behaviour, banter, normalization | — |
 
-**On Vobiz:** it is the *channel into a phone call*, not the brain — it carries the call to the same orchestrator V1 already uses. **On Maximem Synap:** it is the *memory backbone* — the one paid piece that maps directly onto the product's core ("it knows you"), worth using when cross-call memory is part of the story; otherwise V1's in-context profile is enough.
+**On Maximem Synap:** it is the *memory backbone* — the one paid piece that maps directly onto the product's core ("it knows you"), worth using when cross-call memory is part of the story; otherwise V1's in-context profile is enough.
 
 ---
 
-## 13. Success Metrics & Evaluation
+## 11. Success Metrics & Evaluation
 
 Measured via manual demo review plus a few scripted multilingual student personas run by hand (no paid eval tool needed).
 
@@ -360,23 +294,23 @@ Measured via manual demo review plus a few scripted multilingual student persona
 
 ---
 
-## 14. Build Sequencing (4-hour reality)
+## 12. Build Sequencing (4-hour reality)
 
 | Time | Focus |
 |---|---|
 | Hour 1 | LiveKit/Pipecat agent skeleton; pick STT/TTS; clean browser voice loop (no credits) |
 | Hour 2 | Student profile + mentor system prompt + mode router + **state object + barge-in + normalization + banter + energize toolkit** — this is V1's soul |
-| Hour 3 | Harden V1; rehearse the demo (doubt → banter → planning → personal → breathing reset). If rock-solid, start V2 (Vobiz) |
-| Hour 4 | Finish V2, or fall back and polish V1 + run scripted persona checks. Bring in Maximem Synap only if demoing cross-call memory. V3 only if everything else is locked |
+| Hour 3 | Harden V1; rehearse the demo (doubt → banter → planning → personal → breathing reset) |
+| Hour 4 | Polish V1 + run scripted persona checks; layer in V1.5 academic-term recognition. Bring in Maximem Synap only if demoing cross-call memory |
 
-**The discipline:** if you only ship V1, you've shipped the actual product. V2, V3, and the paid integrations are reach, not essence.
+**The discipline:** V1 is the actual product. V1.5 and the optional paid integration are polish and reach, not essence.
 
 ---
 
-## 15. Assumptions & Open Questions
+## 13. Assumptions & Open Questions
 
 - V1 uses a pre-seeded in-context profile (no credits); Maximem Synap is the optional upgrade for cross-session memory.
 - Language priority assumed Hindi/Hinglish/English first, with Telugu/Tamil dependent on STT/TTS coverage within the time budget.
 - Single-student demo; no auth/accounts in MVP.
 - Banter and energize behaviours are demonstrated via the system prompt and a small set of triggers; tuning their timing is the main quality risk.
-- Whether the demo audience prefers the phone (V2) or the visual (V3) as the "second" wow moment — pick based on which is more reliable on the day.
+- How aggressively the V1.5 normalizer should correct — over-correction risks rewriting what the student actually said; tune the threshold on real demo phrases.

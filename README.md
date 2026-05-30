@@ -218,9 +218,7 @@ Saathi moves between modes mid-conversation and announces every switch out loud:
 ## Docs
 
 Full PRD and phase-by-phase build plan in `/docs`:
-- `Saathi_PRD.md` — product vision, principles, three versions
+- `Saathi_PRD.md` — product vision, principles, the build
 - `00_FOUNDATION.md` — brain build plan (phases 0.1–0.7)
 - `V1_browser_mentor.md` — browser channel (phases 1.1–1.4) ✅
 - `V1_5_academic_terms.md` — academic-term recognition (keyterm + normalizer) ✅
-- `V2_phone_vobiz.md` — phone channel via Vobiz
-- `V3_video_whiteboard.md` — video room + whiteboard

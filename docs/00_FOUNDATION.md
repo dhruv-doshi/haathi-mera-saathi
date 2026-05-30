@@ -1,6 +1,6 @@
 # Foundation — The Mentor Brain (build once)
 
-Goal: a single, runnable voice agent that already behaves like Saathi — knows the student, switches modes, banters, can run breathing/dance resets — **testable in the terminal before any frontend exists.** V1/V2/V3 only add channels around this.
+Goal: a single, runnable voice agent that already behaves like Saathi — knows the student, switches modes, banters, can run breathing/dance resets — **testable in the terminal before any frontend exists.** V1 only adds the browser channel around this.
 
 > Most of Saathi's intelligence lives in the **system prompt + injected context**, not in code. Keep code thin: pipeline wiring, profile/memory loading, a few function tools, and state injection. Nothing more.
 

@@ -73,4 +73,4 @@ audio ─▶ STT (nova-3 + per-session keyterms)            ← Layer 1: prevent
 ---
 
 ### Out of scope for V1.5
-Retraining or fine-tuning STT, per-word equation/LaTeX reconstruction, visual math (that's V3's whiteboard), and any new paid services. This version only makes the *existing* cascaded pipeline hear academic speech correctly.
+Retraining or fine-tuning STT, per-word equation/LaTeX reconstruction, visual math rendering, and any new paid services. This version only makes the *existing* cascaded pipeline hear academic speech correctly.
