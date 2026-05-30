@@ -39,6 +39,22 @@ NORMALIZER_TIMEOUT_S = 1.5   # safety cap; falls back to raw transcript past thi
 
 # --- Memory backend: "local" (default, no credits) or "synap" ---
 MEMORY_BACKEND = "local"
+# How many past sessions are recapped into the opening of the next call.
+MEMORY_RECENT_N = 3
+
+# --- Learnings extraction (self-updating profile) ---
+# At session end a fast model reads the transcript and extracts durable learnings
+# (new weak/strong topics, scores, commitments) into the memory `learned` block,
+# which is merged with the static profile seed on the next call. Bounded by a
+# timeout; degrades to a heuristic summary on any failure so shutdown never blocks.
+LEARNINGS_ENABLED = True
+LEARNINGS_MODEL = "anthropic/claude-haiku-4-5"
+LEARNINGS_TIMEOUT_S = 5.0   # looser than the voice budget — no one is waiting
+
+# --- Deterministic safety layer ---
+# Code-level distress detection on the user transcript, independent of the LLM.
+# On trigger it forces escalation and speaks the Tele-MANAS helpline via TTS.
+SAFETY_ENABLED = True
 
 
 def build_llm():
@@ -86,6 +102,24 @@ def build_normalizer_llm():
 
         return openai.LLM(
             model=NORMALIZER_MODEL,
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ["OPENROUTER_API_KEY"],
+        )
+    raise ValueError(f"Unsupported LLM_PROVIDER: {LLM_PROVIDER}")
+
+
+def build_learnings_llm():
+    """Fast, cheap model for the end-of-session learnings extraction."""
+    if LLM_PROVIDER == "openai":
+        from livekit.plugins import openai
+
+        return openai.LLM(model=LEARNINGS_MODEL)
+    if LLM_PROVIDER == "openrouter":
+        import os
+        from livekit.plugins import openai
+
+        return openai.LLM(
+            model=LEARNINGS_MODEL,
             base_url="https://openrouter.ai/api/v1",
             api_key=os.environ["OPENROUTER_API_KEY"],
         )
