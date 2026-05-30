@@ -23,6 +23,7 @@ TTS_PROVIDER = "cartesia"
 LLM_MODEL = "anthropic/claude-sonnet-4-5"
 STT_MODEL = "nova-3"
 TTS_MODEL = "sonic-2"
+TTS_VOICE = "910fb75e-1d20-4840-ac63-ac6b26a71bdc"
 
 # --- Language behavior: Hindi / Hinglish / English (code-mixed) ---
 # Deepgram "multi" enables code-mixed Indian-language transcription.
@@ -65,7 +66,7 @@ def build_tts():
     if TTS_PROVIDER == "cartesia":
         from livekit.plugins import cartesia
 
-        return cartesia.TTS(model=TTS_MODEL)
+        return cartesia.TTS(model=TTS_MODEL, voice=TTS_VOICE)
     if TTS_PROVIDER == "openai":
         from livekit.plugins import openai
 
