@@ -59,20 +59,48 @@ scored correct Devanagari (`लंबित कारण`, `समकलन`) as
   - `tvaran`: OFF `"Tuaren"` / `"ट्वार्न"` → keyterm `"tvaran"` ✓
   - `samakalan`: OFF `"Samakaland"` → keyterm `"Samakalan"` ✓
 - **SMALL (15) ≈ FULL (40)**: 88% vs 89%. The smaller list captures almost all the
-  benefit; FULL edges it out and has no regressions, so the production default stands.
+  benefit; on the English voices FULL edged it out with no regressions.
 - Residual hard cases keyterm does NOT save: total garbles (`tvaran nikalo` → `"Tornicalo"`)
   and a rare drop (`quadratic` → `""`). Real but infrequent.
+
+### Re-run on the PRODUCTION app voice (48 phrases, voice `910fb75e…`, language=hi)
+The English voices above read romanized Hindi with an English accent. This run uses
+the app's actual configured voice with `language=hi` — the most production-relevant set.
+
+| Config | Term recovery | Regressions vs OFF |
+|---|---|---|
+| OFF (V1) | 62% (41/66) | — |
+| **SMALL (15)** | **82% (54/66)** | **0** |
+| FULL (40, current default) | 82% (54/66) | **2** |
+
+- **Keyterm still a clear win: 62% → 82% (+20 points)** on the real app voice.
+- **But FULL now regresses, and it is REPRODUCIBLE (3/3 trials):** the 40-term list makes
+  Deepgram return an **empty transcript** for two `lambit karan …` sentences, which OFF
+  and SMALL transcribe perfectly:
+  - `lambit karan wala concept clear nahi hai` → FULL `""`, SMALL/OFF `लंबित कारण वाला…` ✓
+  - `lambit karan aur samaantar mein fark` → FULL `""`, SMALL/OFF `लंबित कारण और…` ✓
+  - (the shorter `lambit karan kya hota hai` is fine under FULL — length/list-size interaction)
+- **SMALL matches FULL's recovery with ZERO regressions.** A long keyterm list can suppress
+  whole utterances; a tight high-value list does not.
+- **This contradicts the English-voice conclusion** — keyterm-list tuning is voice-dependent,
+  and on the voice that actually ships, **smaller is safer**.
+
+> ⚠️ Production note: `lexicon.build_keyterms` currently sends ~49 terms (all_terms + weak
+> topics, cap 100) — even larger than the FULL(40) tested here, so the empty-drop risk
+> applies to production. Recommend trimming to a high-value core (~15-20).
 
 ## Verdict
 
 | Layer | Result | Confidence |
 |---|---|---|
-| **Layer 1 — keyterm** | **+36 pts** STT recovery (53%→89%), 0 regressions | Validated on synthetic audio; production lexicon **kept as-is** |
+| **Layer 1 — keyterm** | **+20 pts** on app voice (62%→82%); +36 on English voices | Validated; tuning is voice-dependent |
 | **Layer 2 — normalizer** | **+27 pts** text recovery, 0 casual corruption | Validated on text |
 
-Both layers earn their place. **No config change needed** — the keyterm investigation
-cleared the current `lexicon.py` default (FULL beat SMALL). Open follow-ups: the
-normalizer's tight latency budget (~25% exceed 1.5s) and gate recall on total garbles.
+Both layers earn their place. **Action item:** on the production app voice, the large
+keyterm list (~49 in `lexicon.py`) reproducibly drops whole `lambit karan` utterances to
+empty; a 15-term high-value list matches recovery with **zero** regressions. **Trim the
+production keyterm list.** Other open follow-ups: the normalizer's tight latency budget
+(~25% exceed 1.5s) and gate recall on total garbles.
 
 ### Validity caveat (still true)
 All audio is synthetic: clean TTS, and **all 10 Cartesia voices are English** (they read

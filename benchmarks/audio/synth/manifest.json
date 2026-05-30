@@ -5,7 +5,7 @@
       "sin",
       "theta"
     ],
-    "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p02": {
@@ -15,7 +15,7 @@
       "sin",
       "theta"
     ],
-    "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p03": {
@@ -23,7 +23,7 @@
     "concepts": [
       "cosec"
     ],
-    "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p04": {
@@ -32,7 +32,7 @@
       "tan",
       "theta"
     ],
-    "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p05": {
@@ -41,7 +41,7 @@
       "sin",
       "cos"
     ],
-    "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p06": {
@@ -49,7 +49,7 @@
     "concepts": [
       "avkalan"
     ],
-    "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p07": {
@@ -57,7 +57,7 @@
     "concepts": [
       "samakalan"
     ],
-    "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p08": {
@@ -65,7 +65,7 @@
     "concepts": [
       "derivative"
     ],
-    "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p09": {
@@ -73,7 +73,7 @@
     "concepts": [
       "integration"
     ],
-    "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p10": {
@@ -81,7 +81,7 @@
     "concepts": [
       "avkalan"
     ],
-    "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p11": {
@@ -89,7 +89,7 @@
     "concepts": [
       "tvaran"
     ],
-    "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p12": {
@@ -98,7 +98,7 @@
       "veg",
       "tvaran"
     ],
-    "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p13": {
@@ -106,7 +106,7 @@
     "concepts": [
       "visthapan"
     ],
-    "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p14": {
@@ -114,7 +114,7 @@
     "concepts": [
       "lambit_karan"
     ],
-    "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p15": {
@@ -122,7 +122,7 @@
     "concepts": [
       "torque"
     ],
-    "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p16": {
@@ -130,7 +130,7 @@
     "concepts": [
       "momentum"
     ],
-    "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p17": {
@@ -138,7 +138,7 @@
     "concepts": [
       "electrophile"
     ],
-    "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p18": {
@@ -146,7 +146,7 @@
     "concepts": [
       "nucleophile"
     ],
-    "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p19": {
@@ -154,7 +154,7 @@
     "concepts": [
       "quadratic"
     ],
-    "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p20": {
@@ -162,7 +162,7 @@
     "concepts": [
       "polynomial"
     ],
-    "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p21": {
@@ -170,7 +170,7 @@
     "concepts": [
       "logarithm"
     ],
-    "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p22": {
@@ -179,7 +179,7 @@
       "sin",
       "theta"
     ],
-    "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p23": {
@@ -188,7 +188,7 @@
       "cos",
       "theta"
     ],
-    "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p24": {
@@ -196,7 +196,7 @@
     "concepts": [
       "tvaran"
     ],
-    "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p25": {
@@ -205,7 +205,7 @@
       "avkalan",
       "samakalan"
     ],
-    "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p26": {
@@ -213,7 +213,7 @@
     "concepts": [
       "lambit_karan"
     ],
-    "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p27": {
@@ -222,7 +222,7 @@
       "veg",
       "tvaran"
     ],
-    "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p28": {
@@ -231,7 +231,7 @@
       "derivative",
       "avkalan"
     ],
-    "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p29": {
@@ -239,7 +239,7 @@
     "concepts": [
       "cosec"
     ],
-    "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p30": {
@@ -248,7 +248,7 @@
       "electrophile",
       "nucleophile"
     ],
-    "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p31": {
@@ -259,7 +259,7 @@
       "tan",
       "theta"
     ],
-    "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p32": {
@@ -267,7 +267,7 @@
     "concepts": [
       "visthapan"
     ],
-    "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p33": {
@@ -275,7 +275,7 @@
     "concepts": [
       "torque"
     ],
-    "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p34": {
@@ -283,7 +283,7 @@
     "concepts": [
       "momentum"
     ],
-    "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p35": {
@@ -291,7 +291,7 @@
     "concepts": [
       "integration"
     ],
-    "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p36": {
@@ -299,7 +299,7 @@
     "concepts": [
       "samakalan"
     ],
-    "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p37": {
@@ -308,7 +308,7 @@
       "tan",
       "theta"
     ],
-    "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p38": {
@@ -316,7 +316,7 @@
     "concepts": [
       "avkalan"
     ],
-    "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p39": {
@@ -324,7 +324,7 @@
     "concepts": [
       "tvaran"
     ],
-    "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p40": {
@@ -332,7 +332,7 @@
     "concepts": [
       "lambit_karan"
     ],
-    "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p41": {
@@ -340,7 +340,7 @@
     "concepts": [
       "polynomial"
     ],
-    "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p42": {
@@ -348,7 +348,7 @@
     "concepts": [
       "logarithm"
     ],
-    "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p43": {
@@ -357,7 +357,7 @@
       "sin",
       "theta"
     ],
-    "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p44": {
@@ -365,7 +365,7 @@
     "concepts": [
       "veg"
     ],
-    "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p45": {
@@ -373,7 +373,7 @@
     "concepts": [
       "derivative"
     ],
-    "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   },
   "p46": {
@@ -382,7 +382,7 @@
       "cosec",
       "theta"
     ],
-    "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "slow"
   },
   "p47": {
@@ -390,7 +390,7 @@
     "concepts": [
       "electrophile"
     ],
-    "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "normal"
   },
   "p48": {
@@ -398,7 +398,7 @@
     "concepts": [
       "quadratic"
     ],
-    "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
     "speed": "fast"
   }
 }

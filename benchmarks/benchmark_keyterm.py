@@ -127,23 +127,13 @@ PHRASES = [
 ]
 
 
-def voices():
-    r = requests.get("https://api.cartesia.ai/voices",
-                     headers={"X-API-Key": CARTESIA_KEY, "Cartesia-Version": "2025-04-16"},
-                     timeout=30)
-    r.raise_for_status()
-    data = r.json()
-    items = data if isinstance(data, list) else data.get("data", [])
-    return [v["id"] for v in items] or [config.TTS_VOICE]
-
-
 def synth(text, path, voice_id, speed):
     body = {
         "model_id": "sonic-2",
         "transcript": text,
         "voice": {"mode": "id", "id": voice_id, "__experimental_controls": {"speed": speed}},
         "output_format": {"container": "raw", "encoding": "pcm_s16le", "sample_rate": RATE},
-        "language": "en",
+        "language": "hi",
     }
     r = requests.post("https://api.cartesia.ai/tts/bytes",
                       headers={"X-API-Key": CARTESIA_KEY, "Cartesia-Version": "2024-11-13",
@@ -181,7 +171,7 @@ def has(concept, text):
 
 
 def main():
-    vlist = voices()
+    voice = config.TTS_VOICE  # the app's configured (Indian) voice — used for ALL samples
     speeds = ["slow", "normal", "fast"]
     configs = {"OFF": None, "SMALL": SMALL, "FULL": lexicon.all_terms()[:40]}
 
@@ -192,7 +182,6 @@ def main():
     manifest = {}
 
     for i, (pid, text, concepts) in enumerate(PHRASES):
-        voice = vlist[i % len(vlist)]
         speed = speeds[i % len(speeds)]
         wav = OUT / f"{pid}.wav"
         synth(text, wav, voice, speed)
@@ -224,7 +213,7 @@ def main():
 
     print("=" * 60)
     print(f"Phrases: {len(PHRASES)}   ground-truth concepts: {total}")
-    print(f"Voices used: {len(vlist)} (all English)   speeds: slow/normal/fast")
+    print(f"Voice: {voice} (app voice, language=hi)   speeds: slow/normal/fast")
     print()
     print(f"{'Config':8} {'recovery':>10} {'regressions vs OFF':>20}")
     for c in configs:
