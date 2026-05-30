@@ -1,0 +1,711 @@
+{
+  "total": 66,
+  "scores": {
+    "OFF": 35,
+    "SMALL": 58,
+    "FULL": 59
+  },
+  "regressions": {
+    "SMALL": [
+      [
+        "p34",
+        "momentum",
+        "Momentum car conservation sumjau.",
+        "Coservation Samjau."
+      ]
+    ],
+    "FULL": []
+  },
+  "rows": [
+    {
+      "id": "p01",
+      "text": "sin theta ka value kya hai",
+      "concepts": [
+        "sin",
+        "theta"
+      ],
+      "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+      "speed": "slow",
+      "trans": {
+        "OFF": "सिंतीरा का value क्या है?",
+        "SMALL": "Sin theta का value क्या है?",
+        "FULL": "Sin theta का value क्या है?"
+      }
+    },
+    {
+      "id": "p02",
+      "text": "cos theta plus sin theta nikalo",
+      "concepts": [
+        "cos",
+        "sin",
+        "theta"
+      ],
+      "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Cos theta plus sin theta ni calo.",
+        "SMALL": "Cos theta plus sin theta ni calo",
+        "FULL": "Cos theta plus sin theta ni calo"
+      }
+    },
+    {
+      "id": "p03",
+      "text": "cosec x ki value kya hogi",
+      "concepts": [
+        "cosec"
+      ],
+      "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Cosic XQ value क्या होगी?",
+        "SMALL": "Cosec x की value क्या होगी?",
+        "FULL": "Cosec xq value क्या होगी?"
+      }
+    },
+    {
+      "id": "p04",
+      "text": "tan theta equals one solve karo",
+      "concepts": [
+        "tan",
+        "theta"
+      ],
+      "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Tan theta equals one solve caraux.",
+        "SMALL": "Tan theta equals one solve caraux.",
+        "FULL": "Tan theta equals one solve caraux."
+      }
+    },
+    {
+      "id": "p05",
+      "text": "sin squared plus cos squared kitna hota hai",
+      "concepts": [
+        "sin",
+        "cos"
+      ],
+      "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+      "speed": "normal",
+      "trans": {
+        "OFF": "सिन स्क्वायर plus को स्क्वायर कितना होता है?",
+        "SMALL": "Sin square plus cos square कितना होता है?",
+        "FULL": "Sin square plus cos square कितना होता है?"
+      }
+    },
+    {
+      "id": "p06",
+      "text": "avkalan kaise karte hain is function ka",
+      "concepts": [
+        "avkalan"
+      ],
+      "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Aufkalin kessig करते हैं इस function का?",
+        "SMALL": "Avkalan cassickerta his function ka?",
+        "FULL": "Avkalan cassie करते हैं his function ka?"
+      }
+    },
+    {
+      "id": "p07",
+      "text": "samakalan nikalna hai mujhe",
+      "concepts": [
+        "samakalan"
+      ],
+      "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Samakaland Nikalna Hemoji.",
+        "SMALL": "Samakalan nikalan na hemodje.",
+        "FULL": "Samakalan nikalan na hemodge."
+      }
+    },
+    {
+      "id": "p08",
+      "text": "derivative of x squared kya hoga",
+      "concepts": [
+        "derivative"
+      ],
+      "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Derivative of SX squared क्या होगा?",
+        "SMALL": "Derivative of s x squared क्या होगा?",
+        "FULL": "Derivative of s x squared क्या होगा?"
+      }
+    },
+    {
+      "id": "p09",
+      "text": "integration by parts samjhao",
+      "concepts": [
+        "integration"
+      ],
+      "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Integration by partsimzal.",
+        "SMALL": "Integration by partsimzal.",
+        "FULL": "Integration by partsimial."
+      }
+    },
+    {
+      "id": "p10",
+      "text": "is question mein avkalan use karna padega",
+      "concepts": [
+        "avkalan"
+      ],
+      "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+      "speed": "slow",
+      "trans": {
+        "OFF": "इस question में अवकलन use करना पड़ेगा.",
+        "SMALL": "इस question में avkalan use करना पड़ेगा.",
+        "FULL": "इस question में avkalan use करना पड़ेगा."
+      }
+    },
+    {
+      "id": "p11",
+      "text": "tvaran nikalo is body ka",
+      "concepts": [
+        "tvaran"
+      ],
+      "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Tornicalo Hispática.",
+        "SMALL": "Tornicalo Hispática.",
+        "FULL": "Tornicalo is pática."
+      }
+    },
+    {
+      "id": "p12",
+      "text": "veg aur tvaran mein kya difference hai",
+      "concepts": [
+        "veg",
+        "tvaran"
+      ],
+      "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Veg और ट्वार्न में क्या difference है?",
+        "SMALL": "Veg और tvaran में क्या difference है?",
+        "FULL": "Veg और tvaran में क्या difference है?"
+      }
+    },
+    {
+      "id": "p13",
+      "text": "visthapan kitna hua total",
+      "concepts": [
+        "visthapan"
+      ],
+      "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Vistaprint Kitna war total.",
+        "SMALL": "Visthapan kitna war total.",
+        "FULL": "Visthapan kitna war total."
+      }
+    },
+    {
+      "id": "p14",
+      "text": "lambit karan kya hota hai",
+      "concepts": [
+        "lambit_karan"
+      ],
+      "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+      "speed": "normal",
+      "trans": {
+        "OFF": "लंबिट कारण क्या होता है?",
+        "SMALL": "Lambit Lambit karan क्या होता है?",
+        "FULL": "Lambit Lambit karan क्या होता है?"
+      }
+    },
+    {
+      "id": "p15",
+      "text": "torque on the rod kitna hai",
+      "concepts": [
+        "torque"
+      ],
+      "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Torque on the rod, ¿qué tal?",
+        "SMALL": "Torque on the rod कितना है?",
+        "FULL": "Torque on the rod, ¿qué tal?"
+      }
+    },
+    {
+      "id": "p16",
+      "text": "momentum conserve hota hai yahan",
+      "concepts": [
+        "momentum"
+      ],
+      "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Momentum conserve what that he hea.",
+        "SMALL": "Momentum conserve what that he hea.",
+        "FULL": "Momentum conserve what that he hea."
+      }
+    },
+    {
+      "id": "p17",
+      "text": "electrophile kya hota hai samjhao",
+      "concepts": [
+        "electrophile"
+      ],
+      "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Electrophile क्या होता है, समझाओ?",
+        "SMALL": "Electrophile क्या होता है, समझाओ?",
+        "FULL": "Electrophile क्या होता है, समझाओ?"
+      }
+    },
+    {
+      "id": "p18",
+      "text": "nucleophile attack kaise karta hai",
+      "concepts": [
+        "nucleophile"
+      ],
+      "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Nuclear file attack कैसे करता?",
+        "SMALL": "Nuclear file attack test secreta.",
+        "FULL": "Nuclear file attack test secreta."
+      }
+    },
+    {
+      "id": "p19",
+      "text": "quadratic equation solve karna hai",
+      "concepts": [
+        "quadratic"
+      ],
+      "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+      "speed": "slow",
+      "trans": {
+        "OFF": "",
+        "SMALL": "",
+        "FULL": ""
+      }
+    },
+    {
+      "id": "p20",
+      "text": "polynomial ka degree kya hai",
+      "concepts": [
+        "polynomial"
+      ],
+      "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+      "speed": "normal",
+      "trans": {
+        "OFF": "",
+        "SMALL": "",
+        "FULL": "Polynomial का degree क्या है?"
+      }
+    },
+    {
+      "id": "p21",
+      "text": "logarithm of hundred kitna hota hai",
+      "concepts": [
+        "logarithm"
+      ],
+      "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Logarithm of hundred कितना होता है?",
+        "SMALL": "Logarithm of hundred कितना होता है?",
+        "FULL": "Logarithm of hundred कितना होता है?"
+      }
+    },
+    {
+      "id": "p22",
+      "text": "sir sin theta thirty degree pe kya hai",
+      "concepts": [
+        "sin",
+        "theta"
+      ],
+      "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Sir, Synthia de thirty degree P. ¿Qué ha?",
+        "SMALL": "Sir, sintide thirty degree pay. ¿Qué ha?",
+        "FULL": "Sir, sin theta thirty degree pay. ¿Qué ha?"
+      }
+    },
+    {
+      "id": "p23",
+      "text": "cos theta ka graph kaise banta hai",
+      "concepts": [
+        "cos",
+        "theta"
+      ],
+      "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Cost theta का graph कैसे बनता है?",
+        "SMALL": "Cos theta का graph कैसे बनता है?",
+        "FULL": "Cos theta का graph कैसे बनता है?"
+      }
+    },
+    {
+      "id": "p24",
+      "text": "tvaran ka formula bhul gaya hoon",
+      "concepts": [
+        "tvaran"
+      ],
+      "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Tuaren que formula bulgare ho.",
+        "SMALL": "Tvaran ka formula bulgare ho.",
+        "FULL": "Tvaran ka formula bulgare ho."
+      }
+    },
+    {
+      "id": "p25",
+      "text": "avkalan aur samakalan dono confuse hote hain",
+      "concepts": [
+        "avkalan",
+        "samakalan"
+      ],
+      "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+      "speed": "slow",
+      "trans": {
+        "OFF": "अवकलन are some अककलन दोनों confuse होते हैं.",
+        "SMALL": "Avkalan are samakalan, dolo confuse होते हैं.",
+        "FULL": "Avkalan are samakalan, don't confuse होते हैं."
+      }
+    },
+    {
+      "id": "p26",
+      "text": "lambit karan wala concept clear nahi hai",
+      "concepts": [
+        "lambit_karan"
+      ],
+      "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+      "speed": "normal",
+      "trans": {
+        "OFF": "",
+        "SMALL": "",
+        "FULL": ""
+      }
+    },
+    {
+      "id": "p27",
+      "text": "veg constant hai toh tvaran zero hoga",
+      "concepts": [
+        "veg",
+        "tvaran"
+      ],
+      "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Veg constant है, तो टोरिन zero होगा.",
+        "SMALL": "Veg constant है, tvaran zero होगा.",
+        "FULL": "Veg constant है, tvaran zero होगा."
+      }
+    },
+    {
+      "id": "p28",
+      "text": "derivative aur avkalan same cheez hai kya",
+      "concepts": [
+        "derivative",
+        "avkalan"
+      ],
+      "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Derivative, or avkalan same cheese hectare.",
+        "SMALL": "Derivative, or avkalan same cheese hectare.",
+        "FULL": "Derivative, or avkalan same cheese hectare."
+      }
+    },
+    {
+      "id": "p29",
+      "text": "cosec aur sec ka difference batao",
+      "concepts": [
+        "cosec"
+      ],
+      "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+      "speed": "normal",
+      "trans": {
+        "OFF": "KOSEC R-secca differential.",
+        "SMALL": "Cosec arseca differentpital",
+        "FULL": "Cosec arseca differential"
+      }
+    },
+    {
+      "id": "p30",
+      "text": "electrophile aur nucleophile mein confusion hai",
+      "concepts": [
+        "electrophile",
+        "nucleophile"
+      ],
+      "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Electrophile or nucleophile में confusion है.",
+        "SMALL": "Electrophile or nucleophile में confusion है.",
+        "FULL": "Electrophile or nucleophile में confusion है."
+      }
+    },
+    {
+      "id": "p31",
+      "text": "sin theta by cos theta tan hota hai",
+      "concepts": [
+        "sin",
+        "cos",
+        "tan",
+        "theta"
+      ],
+      "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Sin Theta by Cos Theta Tan होता है.",
+        "SMALL": "Sin theta by cos theta tan होता है.",
+        "FULL": "Sin theta by cos theta tan होता है."
+      }
+    },
+    {
+      "id": "p32",
+      "text": "visthapan vector quantity hai kya",
+      "concepts": [
+        "visthapan"
+      ],
+      "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Vistappen vector quantity - häk ya.",
+        "SMALL": "Visthapan vector quantity - häk ya.",
+        "FULL": "Visthapan vector quantity - häk ya."
+      }
+    },
+    {
+      "id": "p33",
+      "text": "torque kaise calculate karte hain",
+      "concepts": [
+        "torque"
+      ],
+      "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Talkie कैसे calculate करते हैं?",
+        "SMALL": "Torquey कैसे calculate करते हैं?",
+        "FULL": "Torquey कैसे calculate करते हैं?"
+      }
+    },
+    {
+      "id": "p34",
+      "text": "momentum ka conservation samjhao",
+      "concepts": [
+        "momentum"
+      ],
+      "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Momentum car conservation sumjau.",
+        "SMALL": "Coservation Samjau.",
+        "FULL": "Momentum car conservation samakalan"
+      }
+    },
+    {
+      "id": "p35",
+      "text": "integration ka basic rule kya hai",
+      "concepts": [
+        "integration"
+      ],
+      "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Integration का basic rule क्या है?",
+        "SMALL": "Integration का basic rule क्या है?",
+        "FULL": "Integration का basic rule क्या है?"
+      }
+    },
+    {
+      "id": "p36",
+      "text": "samakalan ki limit kaise lagate hain",
+      "concepts": [
+        "samakalan"
+      ],
+      "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Samakilin ki limit kese lagathayan.",
+        "SMALL": "Samakalan ki limit kese lagat han.",
+        "FULL": "Samkalan ki limit kese lagat han."
+      }
+    },
+    {
+      "id": "p37",
+      "text": "tan inverse theta kya hota hai",
+      "concepts": [
+        "tan",
+        "theta"
+      ],
+      "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+      "speed": "slow",
+      "trans": {
+        "OFF": "डेनानवर्स तीरा क्या होता है?",
+        "SMALL": "Tan inverse theta क्या होता है?",
+        "FULL": "Tan inverse theta क्या होता है?"
+      }
+    },
+    {
+      "id": "p38",
+      "text": "avkalan se slope nikalte hain",
+      "concepts": [
+        "avkalan"
+      ],
+      "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Auf колenceslop निकलते हैं.",
+        "SMALL": "Avkalan से slope निकलते हैं.",
+        "FULL": "Avkalan से slope निकलते हैं."
+      }
+    },
+    {
+      "id": "p39",
+      "text": "tvaran due to gravity kitna hota hai",
+      "concepts": [
+        "tvaran"
+      ],
+      "voice": "f9836c6e-a0bd-460e-9d3c-f7299fa60f94",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Twern due to gravity कितना होता है?",
+        "SMALL": "Tvaran due to gravity कितना होता है?",
+        "FULL": "Tvaran due to gravity कितना होता है?"
+      }
+    },
+    {
+      "id": "p40",
+      "text": "lambit karan aur samaantar mein fark",
+      "concepts": [
+        "lambit_karan"
+      ],
+      "voice": "a167e0f3-df7e-4d52-a9c3-f949145efdab",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Lumbit garen or somondrement furk.",
+        "SMALL": "Lambit Lambit karan or somonderme furk.",
+        "FULL": "Karan or somonderme furk."
+      }
+    },
+    {
+      "id": "p41",
+      "text": "polynomial ko factor kaise karein",
+      "concepts": [
+        "polynomial"
+      ],
+      "voice": "db6b0ed5-d5d3-463d-ae85-518a07d3c2b4",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Polynomial cofactor gas occurring.",
+        "SMALL": "Polynomial cofactor gas occurring.",
+        "FULL": "Polynomial cofactor gas occurring."
+      }
+    },
+    {
+      "id": "p42",
+      "text": "logarithm rules yaad nahi hain",
+      "concepts": [
+        "logarithm"
+      ],
+      "voice": "630ed21c-2c5c-41cf-9d82-10a7fd668370",
+      "speed": "fast",
+      "trans": {
+        "OFF": "लोगुरित्म rules याद नहीं हैं.",
+        "SMALL": "Logarithm rules याद नहीं हैं.",
+        "FULL": "Logarithm rules याद नहीं हैं."
+      }
+    },
+    {
+      "id": "p43",
+      "text": "sin theta ka maximum value one hota hai",
+      "concepts": [
+        "sin",
+        "theta"
+      ],
+      "voice": "62ae83ad-4f6a-430b-af41-a9bede9286ca",
+      "speed": "slow",
+      "trans": {
+        "OFF": "Sin theta cum maximum value one होता है.",
+        "SMALL": "Sin theta cum maximum value one होता है.",
+        "FULL": "Sin theta cum maximum value one होता है."
+      }
+    },
+    {
+      "id": "p44",
+      "text": "veg kaise badalta hai time ke saath",
+      "concepts": [
+        "veg"
+      ],
+      "voice": "ef191366-f52f-447a-a398-ed8c0f2943a1",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Veg कैसी बदलता है time के साथ?",
+        "SMALL": "Veg कैसी बदलता है time के साथ?",
+        "FULL": "Veg कैसी बदलता है time के साथ?"
+      }
+    },
+    {
+      "id": "p45",
+      "text": "derivative chain rule se karte hain",
+      "concepts": [
+        "derivative"
+      ],
+      "voice": "47c38ca4-5f35-497b-b1a3-415245fb35e1",
+      "speed": "fast",
+      "trans": {
+        "OFF": "Derivative chain rule से करते हैं.",
+        "SMALL": "Derivative chain rule से करते हैं.",
+        "FULL": "Derivative chain rule से करते हैं."
+      }
+    },
+    {
+      "id": "p46",
+      "text": "cosec theta undefined kab hota hai",
+      "concepts": [
+        "cosec",
+        "theta"
+      ],
+      "voice": "f786b574-daa5-4673-aa0c-cbe3e8534c02",
+      "speed": "slow",
+      "trans": {
+        "OFF": "",
+        "SMALL": "Cosec theta undefined कब होता है?",
+        "FULL": "Cosec theta undefined कब होता है?"
+      }
+    },
+    {
+      "id": "p47",
+      "text": "electrophile addition reaction samjhao",
+      "concepts": [
+        "electrophile"
+      ],
+      "voice": "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc",
+      "speed": "normal",
+      "trans": {
+        "OFF": "Electrophile addition reaction somjau.",
+        "SMALL": "Electrophile addition reaction somjau",
+        "FULL": "Electrophile addition reaction somjau."
+      }
+    },
+    {
+      "id": "p48",
+      "text": "quadratic formula yaad karna hai",
+      "concepts": [
+        "quadratic"
+      ],
+      "voice": "5ee9feff-1265-424a-9d7f-8e4d431a12c7",
+      "speed": "fast",
+      "trans": {
+        "OFF": "क्वाद्रिक फॉर्मूल याद करना है.",
+        "SMALL": "",
+        "FULL": ""
+      }
+    }
+  ]
+}

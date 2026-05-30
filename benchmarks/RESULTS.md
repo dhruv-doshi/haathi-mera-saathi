@@ -35,46 +35,47 @@ V1.5 repairs it first. Mishearings here are plausible Deepgram errors I authored
   production budget** → ~25% of corrections would time out and fall back to raw text.
   The OpenRouter→Haiku hop is the cost. Worth tuning (raise budget, or a faster path).
 
-## Layer 1 — keyterm boosting (real audio, 12 phrases, 14 terms)
+## Layer 1 — keyterm boosting (real audio)
 
-text → Cartesia sonic-2 → WAV → Deepgram nova-3 (keyterm OFF vs ON).
+text → Cartesia sonic-2 → WAV → Deepgram nova-3 (keyterm OFF / SMALL / FULL).
 
-| Pipeline | Term recovery |
-|---|---|
-| V1 (no keyterm) | 57% (8/14) |
-| V1.5 Layer 1 (keyterm) | 64% (9/14) |
-| V1.5 full (keyterm + normalizer) | 64% (9/14) |
+### First pass (12 phrases, Latin-only scoring) — MISLEADING, superseded
+Showed 57%→64% and two apparent regressions (`avkalan→polynomial`, `tvaran→∅`).
+Both were artifacts: a 12-clip set, one voice, and a Latin-substring metric that
+scored correct Devanagari (`लंबित कारण`, `समकलन`) as misses. See the proper run below.
 
-**Do not trust this +7 at face value — two confounds dominate:**
+### Proper run (48 phrases, 10 voices, 3 speeds, Devanagari-aware scoring)
+`benchmark_keyterm.py` — each concept matched against Latin **and** Hindi-script forms.
 
-1. **Scoring artifact (Devanagari).** Deepgram with `language=multi` often returns
-   correct *Hindi-script* transcripts that my Latin-substring metric scores as misses:
-   - `lambit karan` → `लंबित कारण` (correct! scored 0/2)
-   - `visthapan` → `वे स्थापन` (≈correct, scored 0/1)
-   - `samakalan` → `समकलन` (correct, scored 0); keyterm just flipped it to Latin `Samakalan` (scored 1).
-   So the only "+1" is a **script flip, not an error fix**.
+| Config | Term recovery | Regressions vs OFF |
+|---|---|---|
+| OFF (V1, no keyterm) | 53% (35/66) | — |
+| SMALL (15 high-value terms) | 88% (58/66) | 1 (momentum, not in list) |
+| FULL (40 terms, production default) | **89% (59/66)** | **0** |
 
-2. **TTS audio is too clean.** A single synthetic voice with clean pronunciation
-   barely produces mishearings — only **2 of 12** phrases had genuine errors:
-   - `avkalan` → `अब कलम` ("now pen"); keyterm made it `अब polynomial` — **keyterm
-     hallucinated a boosted term.**
-   - `tvaran` → `तुरंत` ("immediately"); keyterm → **empty string** — keyterm suppressed it.
+- **Keyterm boosting is a big, real win: 53% → 89% (+36 points), zero regressions.**
+- The earlier "regressions" **did not reproduce** — keyterm actually *fixes* them at scale:
+  - `avkalan`: OFF `"Aufkalin"` → keyterm `"Avkalan"` ✓
+  - `tvaran`: OFF `"Tuaren"` / `"ट्वार्न"` → keyterm `"tvaran"` ✓
+  - `samakalan`: OFF `"Samakaland"` → keyterm `"Samakalan"` ✓
+- **SMALL (15) ≈ FULL (40)**: 88% vs 89%. The smaller list captures almost all the
+  benefit; FULL edges it out and has no regressions, so the production default stands.
+- Residual hard cases keyterm does NOT save: total garbles (`tvaran nikalo` → `"Tornicalo"`)
+  and a rare drop (`quadratic` → `""`). Real but infrequent.
 
-   Layer 1 fixed **neither** genuine error and **regressed both**. That's a real
-   finding: aggressive keyterm lists can inject wrong terms or drop unlisted ones.
+## Verdict
 
-### Honest verdict
+| Layer | Result | Confidence |
+|---|---|---|
+| **Layer 1 — keyterm** | **+36 pts** STT recovery (53%→89%), 0 regressions | Validated on synthetic audio; production lexicon **kept as-is** |
+| **Layer 2 — normalizer** | **+27 pts** text recovery, 0 casual corruption | Validated on text |
 
-- **Layer 2 (normalizer) is the proven win** — +27 points where it applies, zero
-  casual corruption. Caveats: gate misses total garbles; latency budget is tight.
-- **Layer 1 (keyterms) is unproven and shows regression risk** on this set. The
-  synthetic-audio benchmark is **not valid enough** to judge it — clean TTS doesn't
-  reproduce real student speech, and Devanagari breaks the metric.
+Both layers earn their place. **No config change needed** — the keyterm investigation
+cleared the current `lexicon.py` default (FULL beat SMALL). Open follow-ups: the
+normalizer's tight latency budget (~25% exceed 1.5s) and gate recall on total garbles.
 
-### What this benchmark still needs (to be trustworthy)
-1. **Real human recordings** of code-mixed academic speech (accents, noise, real
-   mispronunciation) — the only way to measure the true mishearing rate and the
-   real keyterm effect. Drop them into `benchmarks/audio/` and re-run.
-2. **Transliteration-aware scoring** so correct Devanagari counts as correct.
-3. **Keyterm regression check** — investigate the `avkalan→polynomial` hallucination
-   and `tvaran→∅` drop; consider a smaller / higher-precision keyterm list.
+### Validity caveat (still true)
+All audio is synthetic: clean TTS, and **all 10 Cartesia voices are English** (they read
+romanized Hindi with an English accent). This under-produces real mishearings and accent
+variation. The numbers are a strong controlled signal, not a real-world rate — a
+human-recorded gold set (drop WAVs in `benchmarks/audio/`, re-run) remains the gold standard.
