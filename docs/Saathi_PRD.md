@@ -176,7 +176,7 @@ These are built once in V1 and reused unchanged by V2 and V3.
 
 **6.6 Multilingual + Code-Mixed Handling.** Hindi, Hinglish, Telugu, Tamil, English, including mid-sentence switching. STT/TTS chosen for Indian-language coverage; Saathi replies in the language/mix the student used.
 
-**6.7 Academic-Term Normalization.** A lightweight LLM pass between transcription and reasoning that re-interprets the raw transcript in math/science context — recovering "sin x" from "signs," disambiguating "cos theta," reconciling English terms mixed with Hindi ("lambit karan" = perpendicular). Deliberately corrects downstream rather than retraining STT.
+**6.7 Academic-Term Normalization.** A lightweight LLM pass between transcription and reasoning that re-interprets the raw transcript in math/science context — recovering "sin x" from "signs," disambiguating "cos theta," reconciling English terms mixed with Hindi ("lambit karan" = perpendicular). Deliberately corrects downstream rather than retraining STT. *(Implemented in V1.5 — see `V1_5_academic_terms.md`: STT keyterm prevention + a dedicated conditional normalizer stage on `stt_node`.)*
 
 **6.8 Safety & Escalation.** Distress detection, age-appropriate boundaries, gentle/optional physical activity, and a defined escalation response. Detailed in Section 11.
 
