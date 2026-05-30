@@ -199,7 +199,8 @@
     <div class="pillrow">
       <span class="pill">🎙️ Speak naturally, interrupt mid-sentence</span>
       <span class="pill">🌐 Hindi · Hinglish · English code-mixed</span>
-      <span class="pill">🧠 Knows you &amp; remembers last session</span>
+      <span class="pill">🧠 Remembers you &amp; grows each session</span>
+      <span class="pill">🆘 Built-in safety for minors</span>
     </div>
   </section>
 
@@ -207,200 +208,88 @@
   <section class="slide">
     <div class="eyebrow">The idea</div>
     <h2>A mentor, not a search box</h2>
-    <p class="lead">Five things make Saathi feel like a person, not a tool.</p>
-    <div class="grid cols-3">
-      <div class="card"><div class="ic">🧩</div><h3>Knows you</h3><p>Student profile + prior-session memory injected into every conversation — weak topics, mock scores, days to exam.</p></div>
-      <div class="card"><div class="ic">🧭</div><h3>Gives direction</h3><p>Teaches, plans, strategizes, motivates and steadies — not just answers. Tells you what to skip.</p></div>
+    <p class="lead">It teaches, directs, and reads the room — then remembers it all next time.</p>
+    <div class="grid cols-2">
+      <div class="card"><div class="ic">🧭</div><h3>Gives direction</h3><p>Teaches, plans, and is opinionated about what to skip with 15 days left — not just answers.</p></div>
       <div class="card"><div class="ic">😄</div><h3>Feels human</h3><p>Hinglish banter, mood-aware humour, guided breathing, even a dance break when you're fried.</p></div>
-      <div class="card"><div class="ic">🎙️</div><h3>Voice-first</h3><p>Speak naturally, interrupt mid-sentence, switch topics freely — real turn-taking, not push-to-talk.</p></div>
-      <div class="card"><div class="ic">🌐</div><h3>Multilingual</h3><p>Hindi, Hinglish, English — code-mixed mid-sentence the way students actually talk.</p></div>
-      <div class="card"><div class="ic">🤝</div><h3>Steadies you</h3><p>Reads mood. From doubt-solving to a breathing reset to a helpline — it shifts to what you need.</p></div>
+      <div class="card"><div class="ic">🎙️</div><h3>Voice-first &amp; multilingual</h3><p>Speak naturally, interrupt mid-sentence, switch Hindi/Hinglish/English — real turn-taking.</p></div>
+      <div class="card"><div class="ic">🆘</div><h3>Safe by design</h3><p>Reads mood and, on real distress, escalates with a code-level guarantee — built for minors.</p></div>
     </div>
   </section>
 
-  <!-- 3 — THE PIPELINE / STACK -->
+  <!-- 3 — MEMORY -->
   <section class="slide">
-    <div class="eyebrow">How it's built</div>
-    <h2>The voice pipeline</h2>
-    <p class="lead">A cascaded real-time pipeline orchestrated by LiveKit Agents. Every provider is a one-line swap in <span class="mono">config.py</span>.</p>
-    <div class="pipe">
-      <div class="stage"><div class="tag">Listen · STT</div><div class="name">Deepgram nova-3</div><div class="sub">multilingual, code-mixed</div></div>
-      <div class="arrow">→</div>
-      <div class="stage"><div class="tag">Think · LLM</div><div class="name">Claude Sonnet 4.5</div><div class="sub">via OpenRouter</div></div>
-      <div class="arrow">→</div>
-      <div class="stage"><div class="tag">Speak · TTS</div><div class="name">Cartesia sonic-2</div><div class="sub">warm Hindi-capable voice</div></div>
+    <div class="eyebrow">Knows you</div>
+    <h2>Remembers you — and grows with you</h2>
+    <p class="lead">Saathi opens every call already knowing where you left off, and updates what it knows about you after each session.</p>
+    <div class="grid cols-2" style="margin-top:28px">
+      <div class="card"><div class="ic">📚</div><h3>Accumulating memory</h3><p>Every session is appended to a timestamped history — never overwritten. The next call opens with a recap of the last few.</p></div>
+      <div class="card"><div class="ic">🌱</div><h3>Self-updating profile</h3><p>After each call an LLM extracts what changed — topics that improved, new weak spots, scores, commitments — into a learned layer merged on top of your profile.</p></div>
     </div>
-    <div class="grid cols-4" style="margin-top:24px">
-      <div class="card tight"><h3>Turn-taking</h3><p class="dim">Silero VAD + LiveKit multilingual turn detection</p></div>
-      <div class="card tight"><h3>Memory</h3><p class="dim">Local JSON profile + session summary</p></div>
-      <div class="card tight"><h3>Client</h3><p class="dim">Vanilla HTML/JS + LiveKit JS SDK (CDN)</p></div>
-      <div class="card tight"><h3>Brain</h3><p class="dim">Mentor system prompt + 8 live modes</p></div>
+    <div class="ba" style="margin-top:26px">
+      <div class="box bad"><div class="label">Session 1 ends</div><div class="quote">"SN1/SN2 finally clicked — but Thermo feels shaky. I'll redo the substitution set."</div></div>
+      <div class="mid">→</div>
+      <div class="box good"><div class="label">Session 2 opens</div><div class="quote">"Aarav! SN1/SN2 set ho gaya? Aaj Thermodynamics pakadte hain."</div></div>
     </div>
+    <div class="note">The hand-authored profile is a frozen seed — learnings live in a separate layer, so an LLM slip can never corrupt ground truth. No paid services.</div>
   </section>
 
-  <!-- 4 — MENTOR MODES -->
+  <!-- 4 — SAFETY -->
   <section class="slide">
-    <div class="eyebrow">The brain</div>
-    <h2>Eight modes, switched mid-conversation</h2>
-    <p class="lead">Saathi moves between modes as the student's need changes — and announces every switch out loud.</p>
-    <div class="grid cols-4">
-      <div class="card tight"><h3>🔍 Doubt-Solving</h3><p>Stuck on a concept</p></div>
-      <div class="card tight"><h3>🗺️ Topic Planning</h3><p>"kahan se shuru karun"</p></div>
-      <div class="card tight"><h3>♟️ Exam Strategy</h3><p>Limited days — what to skip</p></div>
-      <div class="card tight"><h3>🔗 Reinforcement</h3><p>Doubt → fundamentals</p></div>
-      <div class="card tight"><h3>🔥 Motivation</h3><p>Confidence dip</p></div>
-      <div class="card tight"><h3>🌬️ Energize &amp; Reset</h3><p>Panic, burnout — breathe</p></div>
-      <div class="card tight"><h3>💙 Personal Support</h3><p>Emotional, not academic</p></div>
-      <div class="card tight"><h3>🆘 Escalation</h3><p>Distress + helpline</p></div>
-    </div>
-    <div class="note">Every session is personalized from <span class="mono">profiles/aarav.json</span> — Class 11, JEE, weak in Organic Chemistry &amp; Rotational Motion, JEE Mains in 15 days.</div>
-  </section>
-
-  <!-- 5 — V1.5 PROBLEM -->
-  <section class="slide">
-    <div class="eyebrow">V1.5 · The problem we solved</div>
-    <h2>The mentor was mishearing the math</h2>
-    <div class="two-col">
-      <div>
-        <p class="lead" style="margin-top:0">Indian academic speech is wildly code-mixed — English "cos theta" next to Hindi "lambit karan" (perpendicular) in one breath. Deepgram <span class="mono">nova-3</span> mangles equation words.</p>
-        <ul class="clean">
-          <li><span class="b">✗</span><span><b>"sin x"</b> heard as <b>"signs"</b></span></li>
-          <li><span class="b">✗</span><span><b>"cos theta"</b> heard as <b>"kos theta"</b></span></li>
-          <li><span class="b">✗</span><span><b>"avkalan"</b> (derivative) → <b>"अब कलं"</b> (≈ "now pen")</span></li>
-        </ul>
-      </div>
-      <div class="ba" style="grid-template-columns:1fr">
-        <div class="box bad">
-          <div class="label">V1 — the only defense</div>
-          <div class="quote">One paragraph in the mentor prompt begging the LLM to guess through mishearings.</div>
-          <p class="dim" style="margin-top:10px">A bypass: the error is never prevented, and correction competes with persona, mood, safety &amp; mode-switching for attention in a single prompt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 — V1.5 SOLUTION (two layers) -->
-  <section class="slide">
-    <div class="eyebrow">V1.5 · The fix</div>
-    <h2>Two dedicated layers, not a prompt patch</h2>
-    <div class="pipe">
-      <div class="stage"><div class="tag">Audio</div><div class="name">🎤 Student speaks</div></div>
-      <div class="arrow">→</div>
-      <div class="stage hl"><div class="tag">Layer 1 · Prevent</div><div class="name">nova-3 keyterms</div><div class="sub">per-session academic lexicon biases the STT at the source</div></div>
-      <div class="arrow">→</div>
-      <div class="stage hl"><div class="tag">Layer 2 · Correct</div><div class="name">Haiku normalizer</div><div class="sub">conditional repair on academic / low-confidence turns only</div></div>
-      <div class="arrow">→</div>
-      <div class="stage"><div class="tag">Brain</div><div class="name">🧠 Mentor LLM</div><div class="sub">no longer recovers mishearings</div></div>
-    </div>
-    <div class="grid cols-2" style="margin-top:26px">
-      <div class="card"><div class="ic">🛡️</div><h3>Layer 1 — keyterm boosting</h3><p>A curated lexicon (trig, calculus, Hindi physics, chemistry) seeded into nova-3's keyterm prompting, auto-extended per student by track &amp; weak topics. Prevents mishears before they happen — <b>+0ms</b>.</p></div>
-      <div class="card"><div class="ic">⚡</div><h3>Layer 2 — conditional normalizer</h3><p>A fast Haiku pass on LiveKit's <span class="mono">stt_node()</span> hook, but <b>only</b> when text looks academic or confidence is low. Chit-chat passes through untouched. Timeout-guarded, never blocks the voice loop.</p></div>
-    </div>
-    <div class="note">And we retired the bypass: the heavy "hear the math" block was removed from the mentor prompt. Correction now lives where it belongs.</div>
-  </section>
-
-  <!-- 7 — RESULTS HEADLINE -->
-  <section class="slide">
-    <div class="eyebrow">V1.5 · Results</div>
-    <h2>Both layers earned their place</h2>
-    <p class="lead">Measured on synthetic-audio &amp; text benchmarks — V1 (before) vs V1.5 (after).</p>
-    <div class="grid cols-2" style="margin-top:30px">
-      <div class="card">
-        <div class="tag-list"><span class="chip hi">Layer 1 · app voice</span></div>
-        <div class="stat green" style="margin-top:14px">62% → 82%</div>
-        <div class="delta win">+20 points STT term recovery</div>
-        <p style="margin-top:10px" class="dim">48 phrases · the app's own Cartesia voice (Hindi) · 3 speeds · Devanagari-aware scoring</p>
-      </div>
-      <div class="card">
-        <div class="tag-list"><span class="chip hi">Layer 2 · text</span></div>
-        <div class="stat accent" style="margin-top:14px">41% → 68%</div>
-        <div class="delta win">+27 points term recovery</div>
-        <p style="margin-top:10px" class="dim">36 phrases · 41 key terms · <b>0/10 casual turns corrupted</b> (gate holds)</p>
-      </div>
-    </div>
-    <div class="note">Reproduce: <span class="mono">benchmarks/benchmark_keyterm.py</span> (Layer 1) · <span class="mono">benchmark_normalizer.py</span> (Layer 2). Samples saved in <span class="mono">benchmarks/audio/</span>. <span class="dim">An English-voice synthetic set scored +36; the app voice above is the production-relevant number.</span></div>
-  </section>
-
-  <!-- 8 — RESULTS BY CATEGORY -->
-  <section class="slide">
-    <div class="eyebrow">V1.5 · Results · Layer 2 detail</div>
-    <h2>Where the normalizer helps most</h2>
-    <p class="lead">Term recovery by category — V1 raw STT vs V1.5 repaired transcript.</p>
-    <div class="bars">
-      <div class="barrow"><div class="cat">Trigonometry</div><div class="track2"><div class="bar v1" style="width:27%">27%</div><div class="bar v15" style="width:91%">91%</div></div></div>
-      <div class="barrow"><div class="cat">Mixed</div><div class="track2"><div class="bar v1" style="width:20%">20%</div><div class="bar v15" style="width:60%">60%</div></div></div>
-      <div class="barrow"><div class="cat">Physics</div><div class="track2"><div class="bar v1" style="width:33%">33%</div><div class="bar v15" style="width:56%">56%</div></div></div>
-      <div class="barrow"><div class="cat">Calculus</div><div class="track2"><div class="bar v1" style="width:57%">57%</div><div class="bar v15" style="width:57%">57%</div></div></div>
-      <div class="barrow"><div class="cat">Overall</div><div class="track2"><div class="bar v1" style="width:41%">41%</div><div class="bar v15" style="width:68%">68%</div></div></div>
-    </div>
-    <div class="note">Trig &amp; mixed code-mixed speech — the hardest cases — improve most. Algebra was already at 100%; calculus/chemistry are limited by total garbles the text-only test can't see Layer 1 fix.</div>
-  </section>
-
-  <!-- 9 — LIVE EXAMPLE -->
-  <section class="slide">
-    <div class="eyebrow">V1.5 · Results · live example</div>
-    <h2>One turn, end to end</h2>
+    <div class="eyebrow">Safe for minors</div>
+    <h2>Safety is a guarantee, not a hope</h2>
+    <p class="lead">Saathi serves minors. Catching distress can't depend on the model choosing to — so there's a deterministic layer underneath the LLM.</p>
     <div class="ba">
       <div class="box bad">
-        <div class="label">V1 — raw STT to brain</div>
-        <div class="quote mono">"अब कलं से slope निकलते हैं"</div>
-        <p class="dim" style="margin-top:12px">"avkalan" (derivative) misheard as "ab kalam" — literally "now pen". The mentor answers the wrong question.</p>
+        <div class="label">Prompt-only — a hope</div>
+        <div class="quote">"Please escalate if the student is in distress…"</div>
+        <p class="dim" style="margin-top:10px">The LLM might miss it, paraphrase the helpline away, or be talked past.</p>
       </div>
       <div class="mid">→</div>
       <div class="box good">
-        <div class="label">V1.5 — keyterm boosting</div>
-        <div class="quote mono">"Avkalan से slope निकलते हैं"</div>
-        <p class="dim" style="margin-top:12px">The keyterm lexicon recovers the real term at the source; the mentor answers derivatives, first time.</p>
+        <div class="label">Code-level — a guarantee</div>
+        <div class="quote">Detected in the transcript → helpline spoken via TTS, every time.</div>
+        <p class="dim" style="margin-top:10px">Independent of the model. The number can't be dropped or refused.</p>
       </div>
     </div>
     <div class="grid cols-3" style="margin-top:26px">
-      <div class="card tight"><h3 class="win">torque</h3><p class="dim">"तौर के" → "Torque" ✓</p></div>
-      <div class="card tight"><h3 class="win">cosec</h3><p class="dim">"कुसिक" → "Cosec" ✓</p></div>
-      <div class="card tight"><h3 class="win">tvaran</h3><p class="dim">dropped "" → "Tvaran" ✓</p></div>
+      <div class="card tight"><div class="ic">🌐</div><h3>Multilingual detection</h3><p class="dim">Self-harm, abuse &amp; hopelessness in Hindi / Hinglish / English — tuned to favour recall, no academic false-alarms.</p></div>
+      <div class="card tight"><div class="ic">📞</div><h3>Tele-MANAS 14416</h3><p class="dim">India's 24×7 govt helpline, spoken aloud. It surfaces help — it never calls anyone on its own.</p></div>
+      <div class="card tight"><div class="ic">🤫</div><h3>Drops everything</h3><p class="dim">Forces escalation mode, switches banter off, and stays present and warm.</p></div>
     </div>
   </section>
 
-  <!-- 10 — HONEST CAVEATS -->
+  <!-- 5 — HEARS THE MATH (V1.5) -->
   <section class="slide">
-    <div class="eyebrow">V1.5 · Results · what's next</div>
-    <h2>Honest about the edges</h2>
-    <div class="grid cols-2">
-      <div class="card"><div class="ic">⏱️</div><h3>Normalizer latency</h3><p>Mean 1249ms, p95 2553ms — only ~75% finish inside the 1.5s budget, so ~25% fall back to raw text. The OpenRouter→Haiku hop is the cost; worth tuning.</p></div>
-      <div class="card"><div class="ic">🎯</div><h3>Gate recall on total garbles</h3><p>Fully-mangled terms ("electro file") don't trigger the text gate — caught in production by the low-confidence trigger + Layer 1 keyterms instead.</p></div>
-      <div class="card"><div class="ic">🔊</div><h3>Synthetic audio</h3><p>Layer 1 audio is now the app's own Cartesia voice (Hindi) — more realistic, but still synthetic &amp; single-voice. A human-recorded gold set is the next step.</p></div>
-      <div class="card"><div class="ic">✂️</div><h3>Action: trim the keyterm list</h3><p>On the app voice the ~49-term list reproducibly drops whole "lambit karan" utterances to empty. A 15-term high-value list = same recovery, <b>0 regressions</b>. Trim before shipping wider.</p></div>
+    <div class="eyebrow">Hears you right</div>
+    <h2>It actually hears the math</h2>
+    <p class="lead">Code-mixed equation words wreck normal speech-to-text — "sin x" → "signs", "avkalan" (derivative) → "ab kalam" (now pen). Two dedicated layers fix it before the mentor ever sees the text.</p>
+    <div class="grid cols-2" style="margin-top:26px">
+      <div class="card">
+        <div class="ic">🛡️</div><h3>Prevent + correct</h3>
+        <p>A per-student academic lexicon biases the STT at the source (+0ms), and a fast conditional pass repairs what slips through — only on academic or low-confidence turns. Casual chat passes untouched.</p>
+      </div>
+      <div class="card">
+        <div class="tag-list"><span class="chip hi">measured</span></div>
+        <div class="stat green" style="margin-top:12px">62% → 82%</div>
+        <div class="delta win">+20 pts STT term recovery (app voice)</div>
+        <div class="stat accent" style="margin-top:14px">41% → 68%</div>
+        <div class="delta win">+27 pts text recovery · 0 casual turns corrupted</div>
+      </div>
     </div>
   </section>
 
-  <!-- 11 — LIVE DEMO PLACEHOLDER -->
+  <!-- 6 — LIVE DEMO + CLOSE -->
   <section class="slide">
     <div class="eyebrow">Live</div>
     <h2>🎙️ Talk to Saathi</h2>
-    <p class="lead">Switch to <span class="mono">http://localhost:8080</span> — click <b>Talk to Saathi</b>, allow the mic, and ask a code-mixed doubt.</p>
+    <p class="lead">Open <span class="mono">http://localhost:8080</span>, allow the mic, and ask a code-mixed doubt. Try "sin theta ka value 30 degree pe?" — then end the call and reopen to show it remembers you.</p>
     <div class="placeholder">
       <div class="big">▶️</div>
       <h3>Live demo / recording goes here</h3>
-      <p style="margin-top:8px">Drop a screen recording or run the live client. Suggested script: greeting → "sin theta ka value 30 degree pe?" → watch the <span class="mono">raw → corrected</span> log → trigger a mode switch.</p>
+      <p style="margin-top:8px">greeting → code-mixed doubt → mode switch → end &amp; reopen to show memory.</p>
     </div>
-    <div class="note">Two terminals: <span class="mono">agent.py dev</span> (worker) + <span class="mono">token_server.py</span> (web). Profile drives the whole personality.</div>
-  </section>
-
-  <!-- 12 — CLOSE -->
-  <section class="slide">
-    <div class="eyebrow">Recap</div>
-    <h2>What's been built</h2>
-    <ul class="clean">
-      <li><span class="b">①</span><span><b>A working voice mentor</b> — real-time STT → Claude → TTS, 8 live modes, memory &amp; profile-driven personality, browser client.</span></li>
-      <li><span class="b">②</span><span><b>V1.5 academic hearing</b> — two dedicated layers (keyterm prevention + conditional normalizer) replacing a fragile prompt bypass.</span></li>
-      <li><span class="b">③</span><span><b>Measured wins</b> — STT recovery 62%→82% (+20) on the app voice, text recovery 41%→68% (+27), casual speech never corrupted.</span></li>
-    </ul>
-    <div class="pillrow" style="margin-top:36px">
-      <span class="pill">Next: trim keyterm list</span>
-      <span class="pill">Human-recorded gold set</span>
-      <span class="pill">V2 phone channel</span>
-      <span class="pill">V3 video + whiteboard</span>
-    </div>
-    <p class="lead" style="margin-top:34px">🐘 <b>Haathi Mera Saathi</b> — the senior who actually picks up.</p>
+    <p class="lead" style="margin-top:28px">🐘 <b>Haathi Mera Saathi</b> — the senior who actually picks up.</p>
   </section>
 
 </div>
@@ -409,7 +298,7 @@
   <div class="brand">🐘 Haathi Mera <b>Saathi</b> — Demo</div>
   <div class="nav">
     <button id="prev" aria-label="Previous">‹</button>
-    <span class="counter"><span id="cur">1</span> / <span id="total">12</span></span>
+    <span class="counter"><span id="cur">1</span> / <span id="total">6</span></span>
     <button id="next" aria-label="Next">›</button>
   </div>
 </div>
