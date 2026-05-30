@@ -29,6 +29,14 @@ TTS_VOICE = "910fb75e-1d20-4840-ac63-ac6b26a71bdc"
 # Deepgram "multi" enables code-mixed Indian-language transcription.
 STT_LANGUAGE = "multi"
 
+# --- Academic-term normalizer (V1.5, PRD 6.7) ---
+# A fast model corrects misheard math/science terms between STT and the mentor
+# LLM, but only on academic-looking or low-confidence transcripts.
+NORMALIZER_ENABLED = True
+NORMALIZER_MODEL = "anthropic/claude-haiku-4-5"
+CONFIDENCE_THRESHOLD = 0.6   # final transcripts below this are sent to normalize
+NORMALIZER_TIMEOUT_S = 1.5   # safety cap; falls back to raw transcript past this
+
 # --- Memory backend: "local" (default, no credits) or "synap" ---
 MEMORY_BACKEND = "local"
 
@@ -50,16 +58,38 @@ def build_llm():
     raise ValueError(f"Unsupported LLM_PROVIDER: {LLM_PROVIDER}")
 
 
-def build_stt():
+def build_stt(keyterms: list[str] | None = None):
     if STT_PROVIDER == "deepgram":
         from livekit.plugins import deepgram
 
-        return deepgram.STT(model=STT_MODEL, language=STT_LANGUAGE)
+        kwargs = {"model": STT_MODEL, "language": STT_LANGUAGE}
+        if keyterms:
+            # nova-3 keyterm prompting (NOT `keywords`, which is nova-2 only).
+            kwargs["keyterm"] = keyterms
+        return deepgram.STT(**kwargs)
     if STT_PROVIDER == "openai":
         from livekit.plugins import openai
 
         return openai.STT(model=STT_MODEL)
     raise ValueError(f"Unsupported STT_PROVIDER: {STT_PROVIDER}")
+
+
+def build_normalizer_llm():
+    """Fast, cheap model for the transcript-normalization stage (PRD 6.7)."""
+    if LLM_PROVIDER == "openai":
+        from livekit.plugins import openai
+
+        return openai.LLM(model=NORMALIZER_MODEL)
+    if LLM_PROVIDER == "openrouter":
+        import os
+        from livekit.plugins import openai
+
+        return openai.LLM(
+            model=NORMALIZER_MODEL,
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ["OPENROUTER_API_KEY"],
+        )
+    raise ValueError(f"Unsupported LLM_PROVIDER: {LLM_PROVIDER}")
 
 
 def build_tts():
