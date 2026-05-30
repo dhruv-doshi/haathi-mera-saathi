@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haathi Mera Saathi</title>
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client@2/dist/livekit-client.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f13;
+      color: #e8e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      opacity: 0.92;
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f0f0fa;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #6b6b80;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Talk button ── */
+    #talkBtn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 50px;
+      background: #5b5bf6;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+      box-shadow: 0 4px 20px rgba(91, 91, 246, 0.35);
+      margin-bottom: 36px;
+    }
+
+    #talkBtn:hover:not(:disabled) {
+      background: #4a4ae0;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(91, 91, 246, 0.45);
+    }
+
+    #talkBtn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    #talkBtn.active {
+      background: #c0392b;
+      box-shadow: 0 4px 20px rgba(192, 57, 43, 0.4);
+    }
+
+    #talkBtn.active:hover:not(:disabled) { background: #a93226; }
+
+    .mic-icon { width: 18px; height: 18px; }
+
+    /* ── Status ── */
+    #status {
+      font-size: 0.8rem;
+      color: #6b6b80;
+      margin-bottom: 28px;
+      min-height: 1.2em;
+      text-align: center;
+    }
+
+    /* ── Transcript ── */
+    .transcript-wrap {
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .transcript-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #44445a;
+      margin-bottom: 12px;
+    }
+
+    #transcript {
+      background: #16161e;
+      border: 1px solid #22222e;
+      border-radius: 12px;
+      padding: 20px;
+      min-height: 220px;
+      max-height: 420px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #transcript:empty::before {
+      content: "Transcript will appear here…";
+      color: #33334a;
+      font-size: 0.88rem;
+    }
+
+    .turn {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .turn-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .turn.saathi .turn-label { color: #7c7cf8; }
+    .turn.student .turn-label { color: #52c87a; }
+
+    .turn-text {
+      font-size: 0.93rem;
+      line-height: 1.55;
+      color: #c8c8dc;
+    }
+
+    .turn.streaming .turn-text { color: #88889a; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <!-- Simple, elegant elephant SVG -->
+    <svg class="logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="62" rx="28" ry="22" fill="#5b5bf6" opacity="0.9"/>
+      <ellipse cx="30" cy="48" rx="18" ry="16" fill="#5b5bf6"/>
+      <ellipse cx="28" cy="42" rx="8" ry="6" fill="#7c7cf8"/>
+      <!-- ear -->
+      <ellipse cx="16" cy="46" rx="9" ry="11" fill="#4a4ae0" opacity="0.7"/>
+      <!-- eye -->
+      <circle cx="24" cy="40" r="2.2" fill="#0f0f13"/>
+      <circle cx="24.7" cy="39.4" r="0.7" fill="#fff" opacity="0.8"/>
+      <!-- trunk -->
+      <path d="M22 52 Q14 58 18 68 Q20 72 24 70" stroke="#5b5bf6" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <!-- legs -->
+      <rect x="30" y="80" width="9" height="14" rx="4" fill="#4a4ae0"/>
+      <rect x="42" y="80" width="9" height="14" rx="4" fill="#4a4ae0"/>
+      <rect x="54" y="80" width="9" height="14" rx="4" fill="#4a4ae0"/>
+      <!-- tail -->
+      <path d="M77 64 Q84 60 82 68" stroke="#4a4ae0" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="title">Haathi Mera Saathi</div>
+    <div class="subtitle">Your late-night academic mentor</div>
+  </div>
+
+  <button id="talkBtn">
+    <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V5a2 2 0 0 0-2-2zm-1 13.93V19H9v2h6v-2h-2v-2.07A7.001 7.001 0 0 0 19 11h-2a5 5 0 0 1-10 0H5a7.001 7.001 0 0 0 6 6.93z"/>
+    </svg>
+    Talk to Saathi
+  </button>
+
+  <div id="status"></div>
+
+  <div class="transcript-wrap">
+    <div class="transcript-label">Live transcript</div>
+    <div id="transcript"></div>
+  </div>
+
+  <script>
+    const { Room, RoomEvent, Track } = LivekitClient;
+
+    const btn       = document.getElementById('talkBtn');
+    const statusEl  = document.getElementById('status');
+    const transcript = document.getElementById('transcript');
+
+    const TOKEN_URL = 'http://localhost:8080/token?room=saathi-room&identity=student';
+    let room = null;
+    // Map of segment id → DOM element for streaming updates
+    const segmentEls = {};
+
+    // ── Transcript helpers ──────────────────────────────────────────────
+
+    function addOrUpdateSegment(segmentId, text, isFinal, speaker) {
+      if (segmentEls[segmentId]) {
+        const el = segmentEls[segmentId];
+        el.querySelector('.turn-text').textContent = text;
+        if (isFinal) {
+          el.classList.remove('streaming');
+          delete segmentEls[segmentId];
+        }
+        return;
+      }
+      if (!text.trim()) return;
+
+      const turn = document.createElement('div');
+      turn.className = `turn ${speaker}${isFinal ? '' : ' streaming'}`;
+      turn.innerHTML = `
+        <span class="turn-label">${speaker === 'saathi' ? 'Haathi Mera Saathi' : 'You'}</span>
+        <span class="turn-text">${text}</span>
+      `;
+      transcript.appendChild(turn);
+      transcript.scrollTop = transcript.scrollHeight;
+
+      if (!isFinal) segmentEls[segmentId] = turn;
+    }
+
+    // Determine speaker: agent participants have isAgent=true in LiveKit JS SDK v2.
+    // Local transcription segments arrive with participant = room.localParticipant (not agent).
+    function speakerFor(participant) {
+      if (!participant) return 'student';
+      if (typeof participant.isAgent === 'boolean') return participant.isAgent ? 'saathi' : 'student';
+      // Fallback: compare identity to local participant
+      if (room && participant.identity === room.localParticipant.identity) return 'student';
+      return 'saathi';
+    }
+
+    // ── Connect / disconnect ────────────────────────────────────────────
+
+    async function connect() {
+      setStatus('Fetching token…');
+      btn.disabled = true;
+
+      let token, url;
+      try {
+        const res = await fetch(TOKEN_URL);
+        ({ token, url } = await res.json());
+      } catch (e) {
+        setStatus('Could not reach token server. Is it running?');
+        btn.disabled = false;
+        return;
+      }
+
+      room = new Room();
+
+      room.on(RoomEvent.TrackSubscribed, (track, _pub, participant) => {
+        if (track.kind === Track.Kind.Audio) {
+          const el = track.attach();
+          el.autoplay = true;
+          document.body.appendChild(el);
+        }
+      });
+
+      // Update status when Saathi actually joins the room
+      room.on(RoomEvent.ParticipantConnected, (participant) => {
+        if (speakerFor(participant) === 'saathi') {
+          setStatus('Saathi is here — listening.');
+        }
+      });
+
+      room.on(RoomEvent.TranscriptionReceived, (segments, participant) => {
+        const speaker = speakerFor(participant);
+        for (const seg of segments) {
+          addOrUpdateSegment(seg.id, seg.text, seg.final, speaker);
+        }
+      });
+
+      room.on(RoomEvent.Disconnected, () => {
+        setStatus('Disconnected.');
+        btn.textContent = '';
+        btn.innerHTML = `
+          <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V5a2 2 0 0 0-2-2zm-1 13.93V19H9v2h6v-2h-2v-2.07A7.001 7.001 0 0 0 19 11h-2a5 5 0 0 1-10 0H5a7.001 7.001 0 0 0 6 6.93z"/>
+          </svg>
+          Talk to Saathi`;
+        btn.className = '';
+        btn.disabled = false;
+        room = null;
+      });
+
+      try {
+        setStatus('Connecting…');
+        await room.connect(url, token);
+        await room.localParticipant.setMicrophoneEnabled(true);
+        setStatus('Connected — waiting for Saathi to join…');
+        btn.innerHTML = `
+          <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V22h2v-2.06A9 9 0 0 0 21 11h-2zM12 15a5 5 0 0 0 5-5V5a5 5 0 0 0-10 0v5a5 5 0 0 0 5 5z"/>
+          </svg>
+          End call`;
+        btn.className = 'active';
+        btn.disabled = false;
+        btn.onclick = disconnect;
+      } catch (e) {
+        setStatus('Connection failed: ' + e.message);
+        btn.disabled = false;
+        room = null;
+      }
+    }
+
+    async function disconnect() {
+      if (room) await room.disconnect();
+    }
+
+    function setStatus(msg) { statusEl.textContent = msg; }
+
+    btn.onclick = connect;
+  </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+livekit-agents[cartesia,deepgram,openai,silero,turn-detector]==1.5.15
+python-dotenv==1.2.2

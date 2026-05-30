@@ -1,0 +1,14 @@
+{
+  "id": "aarav",
+  "name": "Aarav",
+  "class": 11,
+  "track": "JEE",
+  "language_pref": "Hinglish",
+  "weak_topics": ["Organic Chemistry", "Rotational Motion"],
+  "strong_topics": ["Algebra"],
+  "last_scores": [
+    {"test": "Mock 4", "subject": "Physics", "score": "48/120"}
+  ],
+  "syllabus_progress": {"Physics": "60%", "Chemistry": "40%"},
+  "next_exam": {"name": "JEE Mains", "days_away": 15}
+}
