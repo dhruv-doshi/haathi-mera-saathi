@@ -1,0 +1,484 @@
+{
+  "n_phrases": 36,
+  "total_terms": 41,
+  "v1_recovery": 0.4146341463414634,
+  "v15_recovery": 0.6829268292682927,
+  "gate_recall": 0.6666666666666666,
+  "gate_specificity": 1.0,
+  "over_correction": 0,
+  "rows": [
+    {
+      "cat": "trig",
+      "misheard": "signs theta ka value kya hai",
+      "intended": "sin theta ka value kya hai",
+      "corrected": "sine theta ka value kya hai",
+      "keys": [
+        "sin"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "kos theta plus signs theta",
+      "intended": "cos theta plus sin theta",
+      "corrected": "cos theta plus sine theta",
+      "keys": [
+        "cos",
+        "sin"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 2,
+      "n": 2
+    },
+    {
+      "cat": "trig",
+      "misheard": "co sec x ki value nikalo",
+      "intended": "cosec x ki value nikalo",
+      "corrected": "cosec x ki value nikalo",
+      "keys": [
+        "cosec"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "cos theta ka graph banao",
+      "intended": "cos theta ka graph banao",
+      "corrected": "cos theta ka graph banao",
+      "keys": [
+        "cos"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "sign inverse of half",
+      "intended": "sin inverse of half",
+      "corrected": "sign inverse of half",
+      "keys": [
+        "sin"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "ten theta equals one",
+      "intended": "tan theta equals one",
+      "corrected": "tan theta equals one",
+      "keys": [
+        "tan"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "tangent theta kya hota hai",
+      "intended": "tangent theta kya hota hai",
+      "corrected": "tangent theta kya hota hai",
+      "keys": [
+        "tangent"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "trig",
+      "misheard": "signs squared plus kos squared",
+      "intended": "sin squared plus cos squared",
+      "corrected": "sine squared plus cos squared",
+      "keys": [
+        "sin",
+        "cos"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 2,
+      "n": 2
+    },
+    {
+      "cat": "trig",
+      "misheard": "cosine rule kab lagta hai",
+      "intended": "cosine rule kab lagta hai",
+      "corrected": "cosine rule kab lagta hai",
+      "keys": [
+        "cosine"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "calc",
+      "misheard": "aukalan kaise karte hain",
+      "intended": "avkalan kaise karte hain",
+      "corrected": "aukalan kaise karte hain",
+      "keys": [
+        "avkalan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "calc",
+      "misheard": "derivative of x squared",
+      "intended": "derivative of x squared",
+      "corrected": "derivative of x squared",
+      "keys": [
+        "derivative"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "calc",
+      "misheard": "the narrative of sine x",
+      "intended": "the derivative of sin x",
+      "corrected": "the narrative of sine x",
+      "keys": [
+        "derivative",
+        "sin"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 2
+    },
+    {
+      "cat": "calc",
+      "misheard": "integration by parts samjhao",
+      "intended": "integration by parts samjhao",
+      "corrected": "integration by parts samjhao",
+      "keys": [
+        "integration"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "calc",
+      "misheard": "limit x tends to zero",
+      "intended": "limit x tends to zero",
+      "corrected": "limit x tends to zero",
+      "keys": [
+        "limit"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "calc",
+      "misheard": "samakaran nikalna hai",
+      "intended": "samakalan nikalna hai",
+      "corrected": "samakaran nikalna hai",
+      "keys": [
+        "samakalan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "lambait kaaran kya hota hai",
+      "intended": "lambit karan kya hota hai",
+      "corrected": "lambait kaaran kya hota hai",
+      "keys": [
+        "lambit karan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "tu varan nikalo is body ka",
+      "intended": "tvaran nikalo is body ka",
+      "corrected": "tu varan nikalo is body ka",
+      "keys": [
+        "tvaran"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "veg aur tu varan mein difference",
+      "intended": "veg aur tvaran mein difference",
+      "corrected": "veg aur tvaran mein difference",
+      "keys": [
+        "veg",
+        "tvaran"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 2,
+      "n": 2
+    },
+    {
+      "cat": "phys",
+      "misheard": "visth apan kitna hua",
+      "intended": "visthapan kitna hua",
+      "corrected": "visth apan kitna hua",
+      "keys": [
+        "visthapan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "talk on the rod",
+      "intended": "torque on the rod",
+      "corrected": "talk on the rod",
+      "keys": [
+        "torque"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "angular velocity kya hai",
+      "intended": "angular velocity kya hai",
+      "corrected": "angular velocity kya hai",
+      "keys": [
+        "angular velocity"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "momentum conserve hota hai",
+      "intended": "momentum conserve hota hai",
+      "corrected": "momentum conserve hota hai",
+      "keys": [
+        "momentum"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "phys",
+      "misheard": "frequency aur emplitude",
+      "intended": "frequency aur amplitude",
+      "corrected": "frequency aur amplitude",
+      "keys": [
+        "amplitude"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "electro file kya hota hai",
+      "intended": "electrophile kya hota hai",
+      "corrected": "electro file kya hota hai",
+      "keys": [
+        "electrophile"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "nucleo filic substitution",
+      "intended": "nucleophilic substitution",
+      "corrected": "nucleo filic substitution",
+      "keys": [
+        "nucleophil"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "s n one reaction mechanism",
+      "intended": "SN1 reaction mechanism",
+      "corrected": "s n one reaction mechanism",
+      "keys": [
+        "sn1"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "SN2 reaction fast hai",
+      "intended": "SN2 reaction fast hai",
+      "corrected": "SN2 reaction fast hai",
+      "keys": [
+        "sn2"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "covalent bond samjhao",
+      "intended": "covalent bond samjhao",
+      "corrected": "covalent bond samjhao",
+      "keys": [
+        "covalent"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "chem",
+      "misheard": "mole concept clear karo",
+      "intended": "mole concept clear karo",
+      "corrected": "mole concept clear karo",
+      "keys": [
+        "mole"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "alg",
+      "misheard": "quadratic equation solve karo",
+      "intended": "quadratic equation solve karo",
+      "corrected": "quadratic equation solve karo",
+      "keys": [
+        "quadratic"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "alg",
+      "misheard": "the logarithm of hundred",
+      "intended": "the logarithm of hundred",
+      "corrected": "the logarithm of hundred",
+      "keys": [
+        "logarithm"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "alg",
+      "misheard": "polynomial ka degree kya hai",
+      "intended": "polynomial ka degree kya hai",
+      "corrected": "polynomial ka degree kya hai",
+      "keys": [
+        "polynomial"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "mixed",
+      "misheard": "sir signs theta ka value kya hota hai thirty degree pe",
+      "intended": "sir sin theta ka value kya hota hai thirty degree pe",
+      "corrected": "sir sine theta ka value kya hota hai thirty degree pe",
+      "keys": [
+        "sin"
+      ],
+      "gated": true,
+      "v1": 0,
+      "v15": 1,
+      "n": 1
+    },
+    {
+      "cat": "mixed",
+      "misheard": "mujhe co sec aur sec ka difference samajhna hai",
+      "intended": "mujhe cosec aur sec ka difference samajhna hai",
+      "corrected": "mujhe cosec aur sec ka difference samajhna hai",
+      "keys": [
+        "cosec",
+        "sec"
+      ],
+      "gated": true,
+      "v1": 1,
+      "v15": 2,
+      "n": 2
+    },
+    {
+      "cat": "mixed",
+      "misheard": "is question mein aukalan use karna padega",
+      "intended": "is question mein avkalan use karna padega",
+      "corrected": "is question mein aukalan use karna padega",
+      "keys": [
+        "avkalan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    },
+    {
+      "cat": "mixed",
+      "misheard": "lambait kaaran wala concept nahi aaya",
+      "intended": "lambit karan wala concept nahi aaya",
+      "corrected": "lambait kaaran wala concept nahi aaya",
+      "keys": [
+        "lambit karan"
+      ],
+      "gated": false,
+      "v1": 0,
+      "v15": 0,
+      "n": 1
+    }
+  ]
+}

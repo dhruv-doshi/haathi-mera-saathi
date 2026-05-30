@@ -1,0 +1,178 @@
+{
+  "total_terms": 14,
+  "v1": 8,
+  "l1": 9,
+  "full": 9,
+  "rows": [
+    {
+      "id": "trig_sin",
+      "text": "sin theta ka value kya hai",
+      "keys": [
+        "sin"
+      ],
+      "n": 1,
+      "v1_stt": "Sin theta का value क्या है?",
+      "l1_stt": "Sin theta का value क्या है?",
+      "full": "Sin theta का value क्या है?",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "trig_cosec",
+      "text": "cosec x ki value nikalo",
+      "keys": [
+        "cosec"
+      ],
+      "n": 1,
+      "v1_stt": "Cosec x की value निकालो.",
+      "l1_stt": "Cosecant x की value निकालो.",
+      "full": "Cosec x की value निकालो.",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "trig_sincos",
+      "text": "cos theta plus sin theta",
+      "keys": [
+        "cos",
+        "sin"
+      ],
+      "n": 2,
+      "v1_stt": "Cos theta plus sin theta",
+      "l1_stt": "Cos theta plus sin theta",
+      "full": "cos theta plus sin theta",
+      "r_v1": 2,
+      "r_l1": 2,
+      "r_full": 2
+    },
+    {
+      "id": "calc_avkalan",
+      "text": "avkalan kaise karte hain",
+      "keys": [
+        "avkalan"
+      ],
+      "n": 1,
+      "v1_stt": "अब कलम कैसे करते हैं?",
+      "l1_stt": "अब polynomial कैसे करते हैं?",
+      "full": "अब polynomial कैसे करते हैं?",
+      "r_v1": 0,
+      "r_l1": 0,
+      "r_full": 0
+    },
+    {
+      "id": "calc_samak",
+      "text": "samakalan nikalna hai",
+      "keys": [
+        "samakalan"
+      ],
+      "n": 1,
+      "v1_stt": "समकलन निकलना है.",
+      "l1_stt": "Samakalan निकलना है.",
+      "full": "Samakalan निकलना है.",
+      "r_v1": 0,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "phys_lambit",
+      "text": "lambit karan kya hota hai",
+      "keys": [
+        "lambit",
+        "karan"
+      ],
+      "n": 2,
+      "v1_stt": "लंबित कारण क्या होता है?",
+      "l1_stt": "लंबित कारण क्या होता है?",
+      "full": "लंबित कारण क्या होता है?",
+      "r_v1": 0,
+      "r_l1": 0,
+      "r_full": 0
+    },
+    {
+      "id": "phys_tvaran",
+      "text": "tvaran nikalo is body ka",
+      "keys": [
+        "tvaran"
+      ],
+      "n": 1,
+      "v1_stt": "तुरंत निकालो इस body का.",
+      "l1_stt": "",
+      "full": "",
+      "r_v1": 0,
+      "r_l1": 0,
+      "r_full": 0
+    },
+    {
+      "id": "phys_visth",
+      "text": "visthapan kitna hua",
+      "keys": [
+        "visthapan"
+      ],
+      "n": 1,
+      "v1_stt": "वे स्थापन कितना हुआ?",
+      "l1_stt": "वे स्थापन कितना हुआ?",
+      "full": "वे स्थापन कितना हुआ?",
+      "r_v1": 0,
+      "r_l1": 0,
+      "r_full": 0
+    },
+    {
+      "id": "phys_torque",
+      "text": "torque on the rod kitna hai",
+      "keys": [
+        "torque"
+      ],
+      "n": 1,
+      "v1_stt": "Torque on the rod कितना है?",
+      "l1_stt": "Torque on the rod कितना है?",
+      "full": "Torque on the rod कितना है?",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "chem_ephile",
+      "text": "electrophile kya hota hai",
+      "keys": [
+        "electrophile"
+      ],
+      "n": 1,
+      "v1_stt": "Electrophile क्या होता है?",
+      "l1_stt": "Electrophile क्या होता है?",
+      "full": "Electrophile क्या होता है?",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "chem_nphile",
+      "text": "nucleophilic substitution samjhao",
+      "keys": [
+        "nucleophil"
+      ],
+      "n": 1,
+      "v1_stt": "Nucleophilic substitution समझाओ.",
+      "l1_stt": "Nucleophilic substitution समझाओ.",
+      "full": "Nucleophilic substitution समझाओ.",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    },
+    {
+      "id": "mixed_deg",
+      "text": "sin theta ka value kya hota hai thirty degree pe",
+      "keys": [
+        "sin"
+      ],
+      "n": 1,
+      "v1_stt": "Sin theta का value क्या होता है? Thirty degree पे.",
+      "l1_stt": "Sin theta का value क्या होता है? Thirty degree पे.",
+      "full": "Sin theta का value क्या होता है? Thirty degree पे.",
+      "r_v1": 1,
+      "r_l1": 1,
+      "r_full": 1
+    }
+  ]
+}
