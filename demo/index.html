@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Haathi Mera Saathi — Demo</title>
+<style>
+  :root {
+    --bg: #0d0f1a;
+    --bg-soft: #151829;
+    --card: #1b1f33;
+    --card-2: #222743;
+    --ink: #f4f5fb;
+    --ink-soft: #aeb4d0;
+    --ink-dim: #6f76a0;
+    --line: #2c3152;
+    --accent: #ff8a3d;
+    --accent-2: #ffb066;
+    --green: #4ade80;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --purple: #a78bfa;
+    --radius: 18px;
+    --maxw: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: radial-gradient(1200px 700px at 75% -10%, #25203a 0%, var(--bg) 55%);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow: hidden;
+  }
+
+  /* ---------- Deck shell ---------- */
+  .deck { height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 7vw 9vh;
+    overflow-y: auto;
+    animation: fade .45s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .22em; font-size: 12px; font-weight: 700;
+    color: var(--accent-2); margin-bottom: 18px;
+  }
+  h1 { font-size: clamp(34px, 6vw, 70px); line-height: 1.04; letter-spacing: -.02em; font-weight: 800; }
+  h2 { font-size: clamp(26px, 4vw, 44px); line-height: 1.08; letter-spacing: -.02em; font-weight: 800; margin-bottom: 6px; }
+  h3 { font-size: 19px; font-weight: 700; }
+  p.lead { font-size: clamp(17px, 2vw, 22px); color: var(--ink-soft); max-width: 760px; margin-top: 18px; }
+  .muted { color: var(--ink-soft); }
+  .dim { color: var(--ink-dim); }
+
+  /* ---------- Title slide ---------- */
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--line);
+    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    color: var(--ink-soft); margin-bottom: 30px;
+  }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+  .elephant { font-size: clamp(60px, 11vw, 120px); line-height: 1; margin-bottom: 12px; }
+  .title-accent { color: var(--accent); }
+  .pillrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+  .pill {
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 16px; font-size: 14px; color: var(--ink-soft); font-weight: 600;
+  }
+
+  /* ---------- Grid / cards ---------- */
+  .grid { display: grid; gap: 16px; margin-top: 30px; }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .card {
+    background: linear-gradient(180deg, var(--card) 0%, var(--bg-soft) 100%);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px;
+  }
+  .card .ic { font-size: 26px; margin-bottom: 12px; }
+  .card h3 { margin-bottom: 6px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card.tight { padding: 16px 18px; }
+
+  /* ---------- Stat ---------- */
+  .stat { font-size: clamp(30px, 4vw, 46px); font-weight: 800; letter-spacing: -.02em; }
+  .stat.green { color: var(--green); }
+  .stat.accent { color: var(--accent); }
+  .delta { font-size: 14px; font-weight: 700; }
+
+  /* ---------- Stack / table ---------- */
+  table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  th { color: var(--ink-dim); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+  td.num { font-variant-numeric: tabular-nums; font-weight: 700; }
+  tr:last-child td { border-bottom: none; }
+  .win { color: var(--green); font-weight: 800; }
+  .row-total td { background: var(--card-2); }
+  .row-total td:first-child { border-bottom-left-radius: 10px; border-top-left-radius: 10px; }
+
+  /* ---------- Pipeline diagram ---------- */
+  .pipe { display: flex; align-items: stretch; gap: 0; margin-top: 36px; flex-wrap: wrap; }
+  .stage {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; min-width: 150px; flex: 1; position: relative;
+  }
+  .stage .tag { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); font-weight: 700; }
+  .stage .name { font-weight: 700; margin-top: 6px; font-size: 16px; }
+  .stage .sub { font-size: 12.5px; color: var(--ink-soft); margin-top: 4px; }
+  .stage.hl { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 30px rgba(255,138,61,.15); }
+  .stage.hl .tag { color: var(--accent-2); }
+  .arrow { display: flex; align-items: center; color: var(--ink-dim); font-size: 22px; padding: 0 6px; }
+
+  /* ---------- Before/after example ---------- */
+  .ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: center; margin-top: 28px; }
+  .ba .box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .ba .box.bad { border-color: rgba(248,113,113,.4); }
+  .ba .box.good { border-color: rgba(74,222,128,.4); }
+  .ba .label { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 8px; }
+  .ba .bad .label { color: var(--red); }
+  .ba .good .label { color: var(--green); }
+  .ba .quote { font-size: 18px; font-weight: 600; }
+  .ba .mid { font-size: 26px; color: var(--accent); }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  /* ---------- bars ---------- */
+  .bars { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; }
+  .barrow { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 16px; }
+  .barrow .cat { font-weight: 700; font-size: 15px; }
+  .barwrap { position: relative; }
+  .track2 { display: flex; flex-direction: column; gap: 6px; }
+  .bar { height: 18px; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 11.5px; font-weight: 800; color: #0d0f1a; min-width: 36px; }
+  .bar.v1 { background: linear-gradient(90deg,#3a4068,#4a5180); color: var(--ink); }
+  .bar.v15 { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+  /* ---------- footer / nav ---------- */
+  .footer {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px; background: rgba(13,15,26,.7); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-dim); z-index: 50;
+  }
+  .footer .brand { font-weight: 700; color: var(--ink-soft); }
+  .footer .brand b { color: var(--accent); }
+  .nav { display: flex; align-items: center; gap: 8px; }
+  .nav button {
+    background: var(--card); border: 1px solid var(--line); color: var(--ink);
+    width: 34px; height: 34px; border-radius: 9px; cursor: pointer; font-size: 16px;
+    transition: .15s;
+  }
+  .nav button:hover { border-color: var(--accent); color: var(--accent); }
+  .counter { min-width: 60px; text-align: center; font-variant-numeric: tabular-nums; }
+  .progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 60; transition: width .35s ease; }
+
+  .note { margin-top: 22px; font-size: 13.5px; color: var(--ink-dim); border-left: 3px solid var(--line); padding-left: 14px; }
+  .tag-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .chip { font-size: 12.5px; background: var(--card-2); border: 1px solid var(--line); padding: 5px 11px; border-radius: 8px; color: var(--ink-soft); }
+  .chip.hi { border-color: var(--accent); color: var(--accent-2); }
+
+  .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+  ul.clean { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+  ul.clean li { display: flex; gap: 14px; align-items: flex-start; font-size: 16.5px; }
+  ul.clean li .b { color: var(--accent); font-size: 20px; line-height: 1.2; }
+  ul.clean li b { color: var(--ink); }
+
+  .kbd { font-family: ui-monospace, monospace; background: var(--card-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; font-size: 12px; }
+  .placeholder {
+    margin-top: 26px; border: 2px dashed var(--line); border-radius: var(--radius);
+    padding: 40px; text-align: center; color: var(--ink-dim); background: rgba(255,255,255,.015);
+  }
+  .placeholder .big { font-size: 40px; margin-bottom: 12px; }
+  @media (max-width: 760px) {
+    .grid.cols-2,.grid.cols-3,.grid.cols-4 { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 24px; }
+    .ba { grid-template-columns: 1fr; }
+    .pipe { flex-direction: column; } .arrow { transform: rotate(90deg); padding: 4px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 — TITLE -->
+  <section class="slide active">
+    <div class="hero-badge"><span class="dot"></span> Voice-first · Live demo build</div>
+    <div class="elephant">🐘</div>
+    <h1>Haathi Mera <span class="title-accent">Saathi</span></h1>
+    <p class="lead">A multilingual, voice-first academic mentor for Indian students — Class 6–12, Boards / JEE / NEET.
+    Not a chatbot. The warm senior you call at 10 PM who knows your weak chapters and tells you what to drop with 15 days left.</p>
+    <div class="pillrow">
+      <span class="pill">🎙️ Speak naturally, interrupt mid-sentence</span>
+      <span class="pill">🌐 Hindi · Hinglish · English code-mixed</span>
+      <span class="pill">🧠 Knows you &amp; remembers last session</span>
+    </div>
+  </section>
+
+  <!-- 2 — WHAT IT IS -->
+  <section class="slide">
+    <div class="eyebrow">The idea</div>
+    <h2>A mentor, not a search box</h2>
+    <p class="lead">Five things make Saathi feel like a person, not a tool.</p>
+    <div class="grid cols-3">
+      <div class="card"><div class="ic">🧩</div><h3>Knows you</h3><p>Student profile + prior-session memory injected into every conversation — weak topics, mock scores, days to exam.</p></div>
+      <div class="card"><div class="ic">🧭</div><h3>Gives direction</h3><p>Teaches, plans, strategizes, motivates and steadies — not just answers. Tells you what to skip.</p></div>
+      <div class="card"><div class="ic">😄</div><h3>Feels human</h3><p>Hinglish banter, mood-aware humour, guided breathing, even a dance break when you're fried.</p></div>
+      <div class="card"><div class="ic">🎙️</div><h3>Voice-first</h3><p>Speak naturally, interrupt mid-sentence, switch topics freely — real turn-taking, not push-to-talk.</p></div>
+      <div class="card"><div class="ic">🌐</div><h3>Multilingual</h3><p>Hindi, Hinglish, English — code-mixed mid-sentence the way students actually talk.</p></div>
+      <div class="card"><div class="ic">🤝</div><h3>Steadies you</h3><p>Reads mood. From doubt-solving to a breathing reset to a helpline — it shifts to what you need.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 — THE PIPELINE / STACK -->
+  <section class="slide">
+    <div class="eyebrow">How it's built</div>
+    <h2>The voice pipeline</h2>
+    <p class="lead">A cascaded real-time pipeline orchestrated by LiveKit Agents. Every provider is a one-line swap in <span class="mono">config.py</span>.</p>
+    <div class="pipe">
+      <div class="stage"><div class="tag">Listen · STT</div><div class="name">Deepgram nova-3</div><div class="sub">multilingual, code-mixed</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="tag">Think · LLM</div><div class="name">Claude Sonnet 4.5</div><div class="sub">via OpenRouter</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="tag">Speak · TTS</div><div class="name">Cartesia sonic-2</div><div class="sub">warm Hindi-capable voice</div></div>
+    </div>
+    <div class="grid cols-4" style="margin-top:24px">
+      <div class="card tight"><h3>Turn-taking</h3><p class="dim">Silero VAD + LiveKit multilingual turn detection</p></div>
+      <div class="card tight"><h3>Memory</h3><p class="dim">Local JSON profile + session summary</p></div>
+      <div class="card tight"><h3>Client</h3><p class="dim">Vanilla HTML/JS + LiveKit JS SDK (CDN)</p></div>
+      <div class="card tight"><h3>Brain</h3><p class="dim">Mentor system prompt + 8 live modes</p></div>
+    </div>
+  </section>
+
+  <!-- 4 — MENTOR MODES -->
+  <section class="slide">
+    <div class="eyebrow">The brain</div>
+    <h2>Eight modes, switched mid-conversation</h2>
+    <p class="lead">Saathi moves between modes as the student's need changes — and announces every switch out loud.</p>
+    <div class="grid cols-4">
+      <div class="card tight"><h3>🔍 Doubt-Solving</h3><p>Stuck on a concept</p></div>
+      <div class="card tight"><h3>🗺️ Topic Planning</h3><p>"kahan se shuru karun"</p></div>
+      <div class="card tight"><h3>♟️ Exam Strategy</h3><p>Limited days — what to skip</p></div>
+      <div class="card tight"><h3>🔗 Reinforcement</h3><p>Doubt → fundamentals</p></div>
+      <div class="card tight"><h3>🔥 Motivation</h3><p>Confidence dip</p></div>
+      <div class="card tight"><h3>🌬️ Energize &amp; Reset</h3><p>Panic, burnout — breathe</p></div>
+      <div class="card tight"><h3>💙 Personal Support</h3><p>Emotional, not academic</p></div>
+      <div class="card tight"><h3>🆘 Escalation</h3><p>Distress + helpline</p></div>
+    </div>
+    <div class="note">Every session is personalized from <span class="mono">profiles/aarav.json</span> — Class 11, JEE, weak in Organic Chemistry &amp; Rotational Motion, JEE Mains in 15 days.</div>
+  </section>
+
+  <!-- 5 — V1.5 PROBLEM -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · The problem we solved</div>
+    <h2>The mentor was mishearing the math</h2>
+    <div class="two-col">
+      <div>
+        <p class="lead" style="margin-top:0">Indian academic speech is wildly code-mixed — English "cos theta" next to Hindi "lambit karan" (perpendicular) in one breath. Deepgram <span class="mono">nova-3</span> mangles equation words.</p>
+        <ul class="clean">
+          <li><span class="b">✗</span><span><b>"sin x"</b> heard as <b>"signs"</b></span></li>
+          <li><span class="b">✗</span><span><b>"cos theta"</b> heard as <b>"kos theta"</b></span></li>
+          <li><span class="b">✗</span><span><b>"avkalan"</b> (derivative) → <b>"अब कलं"</b> (≈ "now pen")</span></li>
+        </ul>
+      </div>
+      <div class="ba" style="grid-template-columns:1fr">
+        <div class="box bad">
+          <div class="label">V1 — the only defense</div>
+          <div class="quote">One paragraph in the mentor prompt begging the LLM to guess through mishearings.</div>
+          <p class="dim" style="margin-top:10px">A bypass: the error is never prevented, and correction competes with persona, mood, safety &amp; mode-switching for attention in a single prompt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 — V1.5 SOLUTION (two layers) -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · The fix</div>
+    <h2>Two dedicated layers, not a prompt patch</h2>
+    <div class="pipe">
+      <div class="stage"><div class="tag">Audio</div><div class="name">🎤 Student speaks</div></div>
+      <div class="arrow">→</div>
+      <div class="stage hl"><div class="tag">Layer 1 · Prevent</div><div class="name">nova-3 keyterms</div><div class="sub">per-session academic lexicon biases the STT at the source</div></div>
+      <div class="arrow">→</div>
+      <div class="stage hl"><div class="tag">Layer 2 · Correct</div><div class="name">Haiku normalizer</div><div class="sub">conditional repair on academic / low-confidence turns only</div></div>
+      <div class="arrow">→</div>
+      <div class="stage"><div class="tag">Brain</div><div class="name">🧠 Mentor LLM</div><div class="sub">no longer recovers mishearings</div></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:26px">
+      <div class="card"><div class="ic">🛡️</div><h3>Layer 1 — keyterm boosting</h3><p>A curated lexicon (trig, calculus, Hindi physics, chemistry) seeded into nova-3's keyterm prompting, auto-extended per student by track &amp; weak topics. Prevents mishears before they happen — <b>+0ms</b>.</p></div>
+      <div class="card"><div class="ic">⚡</div><h3>Layer 2 — conditional normalizer</h3><p>A fast Haiku pass on LiveKit's <span class="mono">stt_node()</span> hook, but <b>only</b> when text looks academic or confidence is low. Chit-chat passes through untouched. Timeout-guarded, never blocks the voice loop.</p></div>
+    </div>
+    <div class="note">And we retired the bypass: the heavy "hear the math" block was removed from the mentor prompt. Correction now lives where it belongs.</div>
+  </section>
+
+  <!-- 7 — RESULTS HEADLINE -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · Results</div>
+    <h2>Both layers earned their place</h2>
+    <p class="lead">Measured on synthetic-audio &amp; text benchmarks — V1 (before) vs V1.5 (after).</p>
+    <div class="grid cols-2" style="margin-top:30px">
+      <div class="card">
+        <div class="tag-list"><span class="chip hi">Layer 1 · app voice</span></div>
+        <div class="stat green" style="margin-top:14px">62% → 82%</div>
+        <div class="delta win">+20 points STT term recovery</div>
+        <p style="margin-top:10px" class="dim">48 phrases · the app's own Cartesia voice (Hindi) · 3 speeds · Devanagari-aware scoring</p>
+      </div>
+      <div class="card">
+        <div class="tag-list"><span class="chip hi">Layer 2 · text</span></div>
+        <div class="stat accent" style="margin-top:14px">41% → 68%</div>
+        <div class="delta win">+27 points term recovery</div>
+        <p style="margin-top:10px" class="dim">36 phrases · 41 key terms · <b>0/10 casual turns corrupted</b> (gate holds)</p>
+      </div>
+    </div>
+    <div class="note">Reproduce: <span class="mono">benchmarks/benchmark_keyterm.py</span> (Layer 1) · <span class="mono">benchmark_normalizer.py</span> (Layer 2). Samples saved in <span class="mono">benchmarks/audio/</span>. <span class="dim">An English-voice synthetic set scored +36; the app voice above is the production-relevant number.</span></div>
+  </section>
+
+  <!-- 8 — RESULTS BY CATEGORY -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · Results · Layer 2 detail</div>
+    <h2>Where the normalizer helps most</h2>
+    <p class="lead">Term recovery by category — V1 raw STT vs V1.5 repaired transcript.</p>
+    <div class="bars">
+      <div class="barrow"><div class="cat">Trigonometry</div><div class="track2"><div class="bar v1" style="width:27%">27%</div><div class="bar v15" style="width:91%">91%</div></div></div>
+      <div class="barrow"><div class="cat">Mixed</div><div class="track2"><div class="bar v1" style="width:20%">20%</div><div class="bar v15" style="width:60%">60%</div></div></div>
+      <div class="barrow"><div class="cat">Physics</div><div class="track2"><div class="bar v1" style="width:33%">33%</div><div class="bar v15" style="width:56%">56%</div></div></div>
+      <div class="barrow"><div class="cat">Calculus</div><div class="track2"><div class="bar v1" style="width:57%">57%</div><div class="bar v15" style="width:57%">57%</div></div></div>
+      <div class="barrow"><div class="cat">Overall</div><div class="track2"><div class="bar v1" style="width:41%">41%</div><div class="bar v15" style="width:68%">68%</div></div></div>
+    </div>
+    <div class="note">Trig &amp; mixed code-mixed speech — the hardest cases — improve most. Algebra was already at 100%; calculus/chemistry are limited by total garbles the text-only test can't see Layer 1 fix.</div>
+  </section>
+
+  <!-- 9 — LIVE EXAMPLE -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · Results · live example</div>
+    <h2>One turn, end to end</h2>
+    <div class="ba">
+      <div class="box bad">
+        <div class="label">V1 — raw STT to brain</div>
+        <div class="quote mono">"अब कलं से slope निकलते हैं"</div>
+        <p class="dim" style="margin-top:12px">"avkalan" (derivative) misheard as "ab kalam" — literally "now pen". The mentor answers the wrong question.</p>
+      </div>
+      <div class="mid">→</div>
+      <div class="box good">
+        <div class="label">V1.5 — keyterm boosting</div>
+        <div class="quote mono">"Avkalan से slope निकलते हैं"</div>
+        <p class="dim" style="margin-top:12px">The keyterm lexicon recovers the real term at the source; the mentor answers derivatives, first time.</p>
+      </div>
+    </div>
+    <div class="grid cols-3" style="margin-top:26px">
+      <div class="card tight"><h3 class="win">torque</h3><p class="dim">"तौर के" → "Torque" ✓</p></div>
+      <div class="card tight"><h3 class="win">cosec</h3><p class="dim">"कुसिक" → "Cosec" ✓</p></div>
+      <div class="card tight"><h3 class="win">tvaran</h3><p class="dim">dropped "" → "Tvaran" ✓</p></div>
+    </div>
+  </section>
+
+  <!-- 10 — HONEST CAVEATS -->
+  <section class="slide">
+    <div class="eyebrow">V1.5 · Results · what's next</div>
+    <h2>Honest about the edges</h2>
+    <div class="grid cols-2">
+      <div class="card"><div class="ic">⏱️</div><h3>Normalizer latency</h3><p>Mean 1249ms, p95 2553ms — only ~75% finish inside the 1.5s budget, so ~25% fall back to raw text. The OpenRouter→Haiku hop is the cost; worth tuning.</p></div>
+      <div class="card"><div class="ic">🎯</div><h3>Gate recall on total garbles</h3><p>Fully-mangled terms ("electro file") don't trigger the text gate — caught in production by the low-confidence trigger + Layer 1 keyterms instead.</p></div>
+      <div class="card"><div class="ic">🔊</div><h3>Synthetic audio</h3><p>Layer 1 audio is now the app's own Cartesia voice (Hindi) — more realistic, but still synthetic &amp; single-voice. A human-recorded gold set is the next step.</p></div>
+      <div class="card"><div class="ic">✂️</div><h3>Action: trim the keyterm list</h3><p>On the app voice the ~49-term list reproducibly drops whole "lambit karan" utterances to empty. A 15-term high-value list = same recovery, <b>0 regressions</b>. Trim before shipping wider.</p></div>
+    </div>
+  </section>
+
+  <!-- 11 — LIVE DEMO PLACEHOLDER -->
+  <section class="slide">
+    <div class="eyebrow">Live</div>
+    <h2>🎙️ Talk to Saathi</h2>
+    <p class="lead">Switch to <span class="mono">http://localhost:8080</span> — click <b>Talk to Saathi</b>, allow the mic, and ask a code-mixed doubt.</p>
+    <div class="placeholder">
+      <div class="big">▶️</div>
+      <h3>Live demo / recording goes here</h3>
+      <p style="margin-top:8px">Drop a screen recording or run the live client. Suggested script: greeting → "sin theta ka value 30 degree pe?" → watch the <span class="mono">raw → corrected</span> log → trigger a mode switch.</p>
+    </div>
+    <div class="note">Two terminals: <span class="mono">agent.py dev</span> (worker) + <span class="mono">token_server.py</span> (web). Profile drives the whole personality.</div>
+  </section>
+
+  <!-- 12 — CLOSE -->
+  <section class="slide">
+    <div class="eyebrow">Recap</div>
+    <h2>What's been built</h2>
+    <ul class="clean">
+      <li><span class="b">①</span><span><b>A working voice mentor</b> — real-time STT → Claude → TTS, 8 live modes, memory &amp; profile-driven personality, browser client.</span></li>
+      <li><span class="b">②</span><span><b>V1.5 academic hearing</b> — two dedicated layers (keyterm prevention + conditional normalizer) replacing a fragile prompt bypass.</span></li>
+      <li><span class="b">③</span><span><b>Measured wins</b> — STT recovery 62%→82% (+20) on the app voice, text recovery 41%→68% (+27), casual speech never corrupted.</span></li>
+    </ul>
+    <div class="pillrow" style="margin-top:36px">
+      <span class="pill">Next: trim keyterm list</span>
+      <span class="pill">Human-recorded gold set</span>
+      <span class="pill">V2 phone channel</span>
+      <span class="pill">V3 video + whiteboard</span>
+    </div>
+    <p class="lead" style="margin-top:34px">🐘 <b>Haathi Mera Saathi</b> — the senior who actually picks up.</p>
+  </section>
+
+</div>
+
+<div class="footer">
+  <div class="brand">🐘 Haathi Mera <b>Saathi</b> — Demo</div>
+  <div class="nav">
+    <button id="prev" aria-label="Previous">‹</button>
+    <span class="counter"><span id="cur">1</span> / <span id="total">12</span></span>
+    <button id="next" aria-label="Next">›</button>
+  </div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let i = 0;
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur');
+  document.getElementById('total').textContent = total;
+
+  function show(n) {
+    i = Math.max(0, Math.min(total - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    cur.textContent = i + 1;
+    progress.style.width = ((i + 1) / total * 100) + '%';
+  }
+  function next() { show(i + 1); }
+  function prev() { show(i - 1); }
+
+  document.getElementById('next').onclick = next;
+  document.getElementById('prev').onclick = prev;
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(total - 1);
+  });
+  // click right/left half of screen to advance
+  document.getElementById('deck').addEventListener('click', (e) => {
+    if (e.target.closest('a, button')) return;
+    (e.clientX > window.innerWidth / 2) ? next() : prev();
+  });
+  show(0);
+</script>
+</body>
+</html>
