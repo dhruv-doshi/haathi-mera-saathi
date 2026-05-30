@@ -8,13 +8,15 @@ This folder turns the PRD into an executable build. You drive [Claude Code](http
 | `Saathi_PRD.md` | Product spec (the why/what) | — |
 | `00_FOUNDATION.md` | The shared **Mentor Brain** + runnable terminal agent. Build once. | — |
 | `V1_browser_mentor.md` | Browser voice mentor (the product) | Foundation |
+| `V1_5_academic_terms.md` | Academic-term recognition (STT keyterms + §6.7 normalizer stage) | Foundation, V1 |
 | `V2_phone_vobiz.md` | Same mentor on a real phone number | Foundation |
 | `V3_video_whiteboard.md` | Same mentor in a video room with a shared whiteboard | Foundation |
 
 ## Build order
 1. **Foundation (Phase 0.x)** — must be done first; ends with an agent you can talk to in the terminal.
 2. **V1 (Phase 1.x)** — wrap the agent in a browser. This alone is the product.
-3. **V2 (Phase 2.x)** *or* **V3 (Phase 3.x)** — add a channel only after V1 is solid.
+3. **V1.5 (Phase 1.5.x)** — make the agent *hear* code-mixed math/science correctly. A quality fix on top of V1, before adding channels.
+4. **V2 (Phase 2.x)** *or* **V3 (Phase 3.x)** — add a channel only after V1 is solid.
 
 ## How to use with Claude Code
 - Work **one phase at a time**. Each phase has a **▶ Quote** block (paste that to Claude Code) and an **✅ Accept when** list (your review checklist before moving on).

@@ -1,0 +1,88 @@
+{
+  "trig_sin": {
+    "text": "sin theta ka value kya hai",
+    "keys": [
+      "sin"
+    ],
+    "wav": "trig_sin.wav"
+  },
+  "trig_cosec": {
+    "text": "cosec x ki value nikalo",
+    "keys": [
+      "cosec"
+    ],
+    "wav": "trig_cosec.wav"
+  },
+  "trig_sincos": {
+    "text": "cos theta plus sin theta",
+    "keys": [
+      "cos",
+      "sin"
+    ],
+    "wav": "trig_sincos.wav"
+  },
+  "calc_avkalan": {
+    "text": "avkalan kaise karte hain",
+    "keys": [
+      "avkalan"
+    ],
+    "wav": "calc_avkalan.wav"
+  },
+  "calc_samak": {
+    "text": "samakalan nikalna hai",
+    "keys": [
+      "samakalan"
+    ],
+    "wav": "calc_samak.wav"
+  },
+  "phys_lambit": {
+    "text": "lambit karan kya hota hai",
+    "keys": [
+      "lambit",
+      "karan"
+    ],
+    "wav": "phys_lambit.wav"
+  },
+  "phys_tvaran": {
+    "text": "tvaran nikalo is body ka",
+    "keys": [
+      "tvaran"
+    ],
+    "wav": "phys_tvaran.wav"
+  },
+  "phys_visth": {
+    "text": "visthapan kitna hua",
+    "keys": [
+      "visthapan"
+    ],
+    "wav": "phys_visth.wav"
+  },
+  "phys_torque": {
+    "text": "torque on the rod kitna hai",
+    "keys": [
+      "torque"
+    ],
+    "wav": "phys_torque.wav"
+  },
+  "chem_ephile": {
+    "text": "electrophile kya hota hai",
+    "keys": [
+      "electrophile"
+    ],
+    "wav": "chem_ephile.wav"
+  },
+  "chem_nphile": {
+    "text": "nucleophilic substitution samjhao",
+    "keys": [
+      "nucleophil"
+    ],
+    "wav": "chem_nphile.wav"
+  },
+  "mixed_deg": {
+    "text": "sin theta ka value kya hota hai thirty degree pe",
+    "keys": [
+      "sin"
+    ],
+    "wav": "mixed_deg.wav"
+  }
+}

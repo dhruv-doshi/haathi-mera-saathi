@@ -1,0 +1,404 @@
+{
+  "p01": {
+    "text": "sin theta ka value kya hai",
+    "concepts": [
+      "sin",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p02": {
+    "text": "cos theta plus sin theta nikalo",
+    "concepts": [
+      "cos",
+      "sin",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p03": {
+    "text": "cosec x ki value kya hogi",
+    "concepts": [
+      "cosec"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p04": {
+    "text": "tan theta equals one solve karo",
+    "concepts": [
+      "tan",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p05": {
+    "text": "sin squared plus cos squared kitna hota hai",
+    "concepts": [
+      "sin",
+      "cos"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p06": {
+    "text": "avkalan kaise karte hain is function ka",
+    "concepts": [
+      "avkalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p07": {
+    "text": "samakalan nikalna hai mujhe",
+    "concepts": [
+      "samakalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p08": {
+    "text": "derivative of x squared kya hoga",
+    "concepts": [
+      "derivative"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p09": {
+    "text": "integration by parts samjhao",
+    "concepts": [
+      "integration"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p10": {
+    "text": "is question mein avkalan use karna padega",
+    "concepts": [
+      "avkalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p11": {
+    "text": "tvaran nikalo is body ka",
+    "concepts": [
+      "tvaran"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p12": {
+    "text": "veg aur tvaran mein kya difference hai",
+    "concepts": [
+      "veg",
+      "tvaran"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p13": {
+    "text": "visthapan kitna hua total",
+    "concepts": [
+      "visthapan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p14": {
+    "text": "lambit karan kya hota hai",
+    "concepts": [
+      "lambit_karan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p15": {
+    "text": "torque on the rod kitna hai",
+    "concepts": [
+      "torque"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p16": {
+    "text": "momentum conserve hota hai yahan",
+    "concepts": [
+      "momentum"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p17": {
+    "text": "electrophile kya hota hai samjhao",
+    "concepts": [
+      "electrophile"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p18": {
+    "text": "nucleophile attack kaise karta hai",
+    "concepts": [
+      "nucleophile"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p19": {
+    "text": "quadratic equation solve karna hai",
+    "concepts": [
+      "quadratic"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p20": {
+    "text": "polynomial ka degree kya hai",
+    "concepts": [
+      "polynomial"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p21": {
+    "text": "logarithm of hundred kitna hota hai",
+    "concepts": [
+      "logarithm"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p22": {
+    "text": "sir sin theta thirty degree pe kya hai",
+    "concepts": [
+      "sin",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p23": {
+    "text": "cos theta ka graph kaise banta hai",
+    "concepts": [
+      "cos",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p24": {
+    "text": "tvaran ka formula bhul gaya hoon",
+    "concepts": [
+      "tvaran"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p25": {
+    "text": "avkalan aur samakalan dono confuse hote hain",
+    "concepts": [
+      "avkalan",
+      "samakalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p26": {
+    "text": "lambit karan wala concept clear nahi hai",
+    "concepts": [
+      "lambit_karan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p27": {
+    "text": "veg constant hai toh tvaran zero hoga",
+    "concepts": [
+      "veg",
+      "tvaran"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p28": {
+    "text": "derivative aur avkalan same cheez hai kya",
+    "concepts": [
+      "derivative",
+      "avkalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p29": {
+    "text": "cosec aur sec ka difference batao",
+    "concepts": [
+      "cosec"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p30": {
+    "text": "electrophile aur nucleophile mein confusion hai",
+    "concepts": [
+      "electrophile",
+      "nucleophile"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p31": {
+    "text": "sin theta by cos theta tan hota hai",
+    "concepts": [
+      "sin",
+      "cos",
+      "tan",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p32": {
+    "text": "visthapan vector quantity hai kya",
+    "concepts": [
+      "visthapan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p33": {
+    "text": "torque kaise calculate karte hain",
+    "concepts": [
+      "torque"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p34": {
+    "text": "momentum ka conservation samjhao",
+    "concepts": [
+      "momentum"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p35": {
+    "text": "integration ka basic rule kya hai",
+    "concepts": [
+      "integration"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p36": {
+    "text": "samakalan ki limit kaise lagate hain",
+    "concepts": [
+      "samakalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p37": {
+    "text": "tan inverse theta kya hota hai",
+    "concepts": [
+      "tan",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p38": {
+    "text": "avkalan se slope nikalte hain",
+    "concepts": [
+      "avkalan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p39": {
+    "text": "tvaran due to gravity kitna hota hai",
+    "concepts": [
+      "tvaran"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p40": {
+    "text": "lambit karan aur samaantar mein fark",
+    "concepts": [
+      "lambit_karan"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p41": {
+    "text": "polynomial ko factor kaise karein",
+    "concepts": [
+      "polynomial"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p42": {
+    "text": "logarithm rules yaad nahi hain",
+    "concepts": [
+      "logarithm"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p43": {
+    "text": "sin theta ka maximum value one hota hai",
+    "concepts": [
+      "sin",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p44": {
+    "text": "veg kaise badalta hai time ke saath",
+    "concepts": [
+      "veg"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p45": {
+    "text": "derivative chain rule se karte hain",
+    "concepts": [
+      "derivative"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  },
+  "p46": {
+    "text": "cosec theta undefined kab hota hai",
+    "concepts": [
+      "cosec",
+      "theta"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "slow"
+  },
+  "p47": {
+    "text": "electrophile addition reaction samjhao",
+    "concepts": [
+      "electrophile"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "normal"
+  },
+  "p48": {
+    "text": "quadratic formula yaad karna hai",
+    "concepts": [
+      "quadratic"
+    ],
+    "voice": "910fb75e-1d20-4840-ac63-ac6b26a71bdc",
+    "speed": "fast"
+  }
+}

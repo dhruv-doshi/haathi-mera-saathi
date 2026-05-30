@@ -13,6 +13,7 @@ Not a chatbot. The warm senior in your hostel you call at 10 PM — the one who 
 - **Feels human** — Hinglish banter, mood-aware humour, guided breathing, dance breaks
 - **Voice-first** — speak naturally, interrupt mid-sentence, switch topics freely
 - **Multilingual** — Hindi, Hinglish, English, code-mixed mid-sentence
+- **Hears the math** — code-mixed academic terms ("cos theta", "lambit karan", "avkalan") are recognized, not mangled ([V1.5](#academic-term-recognition-v15))
 
 ---
 
@@ -21,7 +22,8 @@ Not a chatbot. The warm senior in your hostel you call at 10 PM — the one who 
 | Layer | Choice |
 |---|---|
 | Voice orchestration | LiveKit Agents (Python) |
-| STT | Deepgram `nova-3` (multilingual) |
+| STT | Deepgram `nova-3` (multilingual) + academic keyterm prompting |
+| Transcript normalizer | Claude Haiku via OpenRouter (conditional academic-term repair) |
 | LLM | Claude Sonnet via OpenRouter |
 | TTS | Cartesia `sonic-2` |
 | VAD + turn detection | Silero + LiveKit multilingual model |
@@ -35,8 +37,10 @@ Not a chatbot. The warm senior in your hostel you call at 10 PM — the one who 
 ```
 haathi-mera-saathi/
 ├── src/
-│   ├── agent.py          # LiveKit Agents pipeline — the brain
+│   ├── agent.py          # LiveKit Agents pipeline — the brain (stt_node + llm_node)
 │   ├── config.py         # Provider + model selection (one-line swaps)
+│   ├── lexicon.py        # Academic keyterm lexicon (STT bias + normalizer context)
+│   ├── normalizer.py     # Conditional transcript-normalization stage (PRD §6.7)
 │   ├── prompt.py         # Mentor system prompt builder
 │   ├── profile.py        # Student profile loader + formatter
 │   ├── memory.py         # Session memory interface (local JSON / Synap)
@@ -48,6 +52,9 @@ haathi-mera-saathi/
 │   └── aarav.json        # Prior session summary (written at session end)
 ├── web/
 │   └── index.html        # Single-page browser client
+├── benchmarks/           # V1 vs V1.5 benchmarks + saved audio samples + RESULTS.md
+├── tests/                # Normalizer golden-set checks
+├── demo/                 # Standalone presentation deck (open in a browser)
 ├── docs/                 # PRD and phase-by-phase build plan
 └── requirements.txt
 ```
@@ -137,6 +144,56 @@ STT_MODEL    = "nova-3"
 TTS_PROVIDER = "cartesia"
 TTS_MODEL    = "sonic-2"
 TTS_VOICE    = "910fb75e-1d20-4840-ac63-ac6b26a71bdc"
+
+# Academic-term normalizer (V1.5)
+NORMALIZER_ENABLED   = True
+NORMALIZER_MODEL     = "anthropic/claude-haiku-4-5"
+CONFIDENCE_THRESHOLD = 0.6   # low-confidence finals are also normalized
+NORMALIZER_TIMEOUT_S = 1.5   # falls back to raw transcript past this
+```
+
+---
+
+## Academic-term recognition (V1.5)
+
+Indian academic speech is wildly code-mixed — English "cos theta" next to Hindi "lambit karan" (perpendicular) in one breath — and `nova-3` mishears equation words ("sin x" → "signs", "avkalan" → "अब कलं"). V1.5 fixes this in **two dedicated layers** instead of a prompt patch:
+
+1. **Prevent at the source** — `src/lexicon.py` seeds `nova-3`'s **keyterm prompting** with a curated academic lexicon (trig, calculus, Hindi physics, chemistry), auto-extended per student by their weak topics. Wired in `config.build_stt(keyterms=...)`.
+2. **Correct what slips through** — `src/normalizer.py` is a dedicated normalization stage on LiveKit's `Agent.stt_node()` hook. A fast Haiku pass repairs the transcript **only** when it looks academic or STT confidence is low; casual turns pass through untouched (zero added latency). Timeout-guarded — never blocks the voice loop.
+
+The old "hear the math" paragraph was removed from the mentor prompt; correction now lives where it belongs. Full plan: `docs/V1_5_academic_terms.md`.
+
+**To see it live**, watch the agent logs: `STT keyterm prompting: N terms` on startup, and a `normalized: '…' -> '…'` line when an academic turn is repaired (no line on casual turns — the gate skipping).
+
+---
+
+## Benchmarks
+
+V1 vs V1.5, with results and saved audio in `benchmarks/` (write-up in `benchmarks/RESULTS.md`):
+
+```bash
+.venv/bin/python benchmarks/benchmark_normalizer.py   # Layer 2 (text) — needs OPENROUTER_API_KEY
+.venv/bin/python benchmarks/benchmark_keyterm.py      # Layer 1 (app-voice audio) — needs CARTESIA + DEEPGRAM
+.venv/bin/python tests/test_normalizer.py             # offline gate checks (+ live if key set)
+```
+
+Headline (on the app's own Cartesia voice, Devanagari-aware scoring):
+
+| Layer | Metric | V1 → V1.5 |
+|---|---|---|
+| Layer 1 — keyterm boosting | STT term recovery (48 phrases) | **62% → 82%** (+20) |
+| Layer 2 — normalizer | text term recovery (36 phrases) | **41% → 68%** (+27), 0/10 casual turns corrupted |
+
+> Known follow-up: on the app voice a large (~49-term) keyterm list can drop some whole utterances; a ~15-term high-value list matches recovery with zero regressions. See `RESULTS.md`.
+
+---
+
+## Demo deck
+
+A standalone presentation (no server needed):
+
+```bash
+open demo/index.html   # navigate with → / ← or click left/right half
 ```
 
 ---
@@ -164,5 +221,6 @@ Full PRD and phase-by-phase build plan in `/docs`:
 - `Saathi_PRD.md` — product vision, principles, three versions
 - `00_FOUNDATION.md` — brain build plan (phases 0.1–0.7)
 - `V1_browser_mentor.md` — browser channel (phases 1.1–1.4) ✅
+- `V1_5_academic_terms.md` — academic-term recognition (keyterm + normalizer) ✅
 - `V2_phone_vobiz.md` — phone channel via Vobiz
 - `V3_video_whiteboard.md` — video room + whiteboard

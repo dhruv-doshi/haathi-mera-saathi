@@ -8,6 +8,7 @@ from livekit.agents import (
     RoomInputOptions,
     TurnHandlingOptions,
     function_tool,
+    stt as stt_events,
 )
 # Top-level plugin imports register each plugin on the main thread before
 # the worker forks — required by LiveKit Agents.
@@ -15,7 +16,9 @@ from livekit.plugins import cartesia, deepgram, openai, silero  # noqa: F401
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
 import config
+import lexicon
 import memory
+import normalizer
 from profile import load_profile, format_profile
 from prompt import build_system_prompt
 from state import SessionState
@@ -26,10 +29,20 @@ STUDENT_ID = "aarav"  # single-student demo; no auth in MVP
 
 
 class Assistant(Agent):
-    def __init__(self, instructions: str) -> None:
+    def __init__(
+        self,
+        instructions: str,
+        keyterms: list[str] | None = None,
+        normalizer_llm=None,
+    ) -> None:
         super().__init__(instructions=instructions)
         self.session_state = SessionState()
         self._student_id = STUDENT_ID
+        # V1.5: academic-term normalization. keyterms double as the lexicon the
+        # gate checks against; normalizer_llm is the fast correction model (None
+        # disables the stage).
+        self._keyterms = keyterms or []
+        self._normalizer_llm = normalizer_llm
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -60,6 +73,30 @@ class Assistant(Agent):
         )
         memory.save_summary(self._student_id, summary)
         logger.info("Session summary saved for %s: %s", self._student_id, summary)
+
+    # ------------------------------------------------------------------
+    # Transcript normalization (V1.5, PRD 6.7) — correct misheard math/science
+    # terms between STT and the LLM, but only when it's worth it.
+    # ------------------------------------------------------------------
+
+    async def stt_node(self, audio, model_settings):
+        async for event in Agent.default.stt_node(self, audio, model_settings):
+            if (
+                config.NORMALIZER_ENABLED
+                and self._normalizer_llm is not None
+                and event.type == stt_events.SpeechEventType.FINAL_TRANSCRIPT
+                and event.alternatives
+            ):
+                alt = event.alternatives[0]
+                low_conf = 0 < alt.confidence < config.CONFIDENCE_THRESHOLD
+                if low_conf or normalizer.looks_academic(alt.text, self._keyterms):
+                    alt.text = await normalizer.normalize(
+                        alt.text,
+                        self._keyterms,
+                        self._normalizer_llm,
+                        timeout=config.NORMALIZER_TIMEOUT_S,
+                    )
+            yield event
 
     # ------------------------------------------------------------------
     # State injection — append current state as system message every turn
@@ -116,8 +153,14 @@ async def entrypoint(ctx: agents.JobContext):
     prior_summary = memory.get_summary(STUDENT_ID)
     instructions = build_system_prompt(profile_str, prior_summary)
 
+    # V1.5 — academic-term recognition. Keyterms bias the STT at the source;
+    # the normalizer LLM corrects what still slips through.
+    keyterms = lexicon.build_keyterms(profile)
+    logger.info("STT keyterm prompting: %d terms", len(keyterms))
+    normalizer_llm = config.build_normalizer_llm() if config.NORMALIZER_ENABLED else None
+
     session = AgentSession(
-        stt=config.build_stt(),
+        stt=config.build_stt(keyterms=keyterms),
         llm=config.build_llm(),
         tts=config.build_tts(),
         vad=silero.VAD.load(),
@@ -129,7 +172,11 @@ async def entrypoint(ctx: agents.JobContext):
 
     await session.start(
         room=ctx.room,
-        agent=Assistant(instructions=instructions),
+        agent=Assistant(
+            instructions=instructions,
+            keyterms=keyterms,
+            normalizer_llm=normalizer_llm,
+        ),
         room_input_options=RoomInputOptions(),
     )
 
