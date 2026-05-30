@@ -38,8 +38,21 @@ BASE_LEXICON: dict[str, list[str]] = {
     ],
 }
 
-# Deepgram caps keyterm prompting; keep the request well under any limit.
-_KEYTERM_CAP = 100
+# Sent to Deepgram nova-3 as keyterms. Deliberately a TIGHT, high-value subset of
+# the lexicon — the benchmark (benchmarks/RESULTS.md) showed that a large (~40+ term)
+# keyterm list reproducibly makes nova-3 drop whole utterances to empty
+# (e.g. "lambit karan ..." -> ""), while this ~15-term list keeps the same recovery
+# with ZERO regressions on the production app voice. Keep this list short.
+HIGH_VALUE_KEYTERMS = [
+    "sin", "cos", "tan", "cosec", "theta",
+    "avkalan", "samakalan", "derivative",
+    "tvaran", "veg", "visthapan", "lambit karan", "torque",
+    "electrophile", "nucleophile",
+]
+
+# Hard cap on the keyterm request — kept low on purpose (see above). Leaves room for
+# a handful of per-student weak-topic names without entering the drop-prone range.
+_KEYTERM_CAP = 25
 
 
 def all_terms() -> list[str]:
@@ -51,19 +64,19 @@ def all_terms() -> list[str]:
 
 
 def build_keyterms(profile: dict) -> list[str]:
-    """Curated base lexicon plus the student's own weak-topic names.
+    """The high-value keyterm core sent to the STT.
 
-    The base is always included; the student's weak topics (e.g. "Rotational
-    Motion", "Organic Chemistry") are appended so the keyterm list visibly tracks
-    what this student studies. Result is deduplicated (order-preserving) and
-    capped to a safe keyterm count.
+    Only the mishearing-prone academic terms are sent — NOT the full lexicon, and
+    NOT the student's weak-topic names. Both were benchmarked and found to make
+    nova-3 drop whole utterances to empty: notably the multi-word weak-topic names
+    (e.g. "Organic Chemistry", "Rotational Motion") reproducibly killed transcripts
+    that the bare core transcribes perfectly (see benchmarks/RESULTS.md). `profile`
+    is accepted for forward-compatibility but intentionally not used to extend the
+    keyterms — the profile still drives the prompt, memory, and the normalizer.
     """
-    terms = all_terms()
-    terms.extend(profile.get("weak_topics", []))
-
     seen: set[str] = set()
     out: list[str] = []
-    for term in terms:
+    for term in HIGH_VALUE_KEYTERMS:
         key = term.lower()
         if key not in seen:
             seen.add(key)
